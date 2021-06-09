@@ -1,13 +1,28 @@
-type Token @entity {
-  id: ID!
-  decimals: Int
-  name: String
-  symbol: String
-}
+# type Token @entity {
+#   id: ID!
+#   decimals: Int
+#   name: String
+#   symbol: String
+# }
 
-type Transfer @entity {
-  id: ID!
-  from: String!
-  to: String!
-  value: BigInt!
+# type Transfer @entity {
+#   id: ID!
+#   from: String!
+#   to: String!
+#   value: BigInt!
+# }
+
+type SaveToken @entity {
+  id: ID! # address
+  address: Bytes!
+  creationTx: Bytes!
+  factoryAddress: Bytes!
+  # admin: Bytes!
+  # underlyingToken: Bytes!
+  # assetAdapter: Bytes!
+  # assetToken: Bytes!
+  # insuranceAdapter: Bytes!
+  # insuranceToken: Bytes!
+  # exchangeFactory: Bytes!
+  # farmerAddress: Bytes!
 }

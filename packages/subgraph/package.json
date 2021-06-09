@@ -1,15 +1,18 @@
 {
-  "name": "@project/subgraph",
+  "name": "@savetoken/subgraph",
   "version": "1.0.0",
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.18.0",
-    "@graphprotocol/graph-ts": "0.18.1"
+    "@graphprotocol/graph-cli": "0.20.0",
+    "@graphprotocol/graph-ts": "0.20.0"
   },
   "license": "MIT",
   "scripts": {
     "auth": "graph auth https://api.thegraph.com/ $GRAPH_ACCESS_TOKEN",
     "build": "graph build",
     "codegen": "graph codegen --output-dir src/types/",
-    "deploy": "graph deploy paulrberg/create-eth-app --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/"
+    "deploy-mumbai": "graph deploy dan13ram/savetoken-mumbai --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+    "create-local": "graph create --node http://localhost:8020/ dan13ram/savetoken",
+    "remove-local": "graph remove --node http://localhost:8020/ dan13ram/savetoken",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dan13ram/savetoken"
   }
 }

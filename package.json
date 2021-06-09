@@ -1,23 +1,24 @@
 {
-  "name": "@project/monorepo",
+  "name": "@savetoken/ui",
   "version": "1.0.0",
   "keywords": [
     "ethereum",
-    "react",
-    "workspaces",
-    "yarn"
+    "savetoken",
+    "savedai"
   ],
   "private": true,
   "scripts": {
-    "subgraph:auth": "yarn workspace @project/subgraph auth",
-    "subgraph:codegen": "yarn workspace @project/subgraph codegen",
-    "subgraph:build": "yarn workspace @project/subgraph build",
-    "subgraph:deploy": "yarn workspace @project/subgraph deploy",
-    "react-app:build": "yarn workspace @project/react-app build",
-    "react-app:eject": "yarn workspace @project/react-app eject",
-    "react-app:ipfs": "yarn workspace @project/react-app ipfs",
-    "react-app:start": "yarn workspace @project/react-app start",
-    "react-app:test": "yarn workspace @project/react-app test"
+    "subgraph:auth": "yarn workspace @savetoken/subgraph auth",
+    "subgraph:codegen": "yarn workspace @savetoken/subgraph codegen",
+    "subgraph:build": "yarn workspace @savetoken/subgraph build",
+    "subgraph:deploy": "yarn workspace @savetoken/subgraph deploy",
+    "dapp:build": "yarn workspace @savetoken/dapp build",
+    "dapp:eject": "yarn workspace @savetoken/dapp eject",
+    "dapp:ipfs": "yarn workspace @savetoken/dapp ipfs",
+    "dapp:start": "yarn workspace @savetoken/dapp start",
+    "dapp:test": "yarn workspace @savetoken/dapp test",
+    "lint": "eslint --ignore-path .gitignore \"./packages/**/*.{ts,tsx,js,jsx}\"",
+    "format": "prettier --ignore-path .gitignore --write \"{*,**/*}.{ts,tsx,js,jsx,json,md,sol}\""
   },
   "workspaces": {
     "nohoist": [
@@ -27,5 +28,29 @@
     "packages": [
       "packages/*"
     ]
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,sol}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-flowtype": "^5.7.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0"
   }
 }

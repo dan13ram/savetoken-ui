@@ -1,6 +1,7 @@
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
 import { Layout } from 'components/shared/Layout';
+import { Web3Provider } from 'contexts/Web3Context';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
@@ -13,9 +14,11 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => (
     </Head>
     <ColorModeScript initialColorMode="light" />
     <Global styles={globalStyles} />
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Web3Provider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Web3Provider>
   </ChakraProvider>
 );
 

@@ -3,9 +3,8 @@ import { css } from '@emotion/react';
 
 export const theme: Theme & {
   colors: Theme['colors'] & {
-    specialPink: string;
+    greyText: string;
     mud: ColorHues;
-    mudAlpha: ColorHues;
   };
   fonts: Theme['fonts'] & {
     grotesk: string;
@@ -20,7 +19,7 @@ export const theme: Theme & {
   },
   colors: {
     ...chakraTheme.colors,
-    specialPink: '#ffb6c1',
+    greyText: '#A2A2A2',
     mud: {
       50: '#ffedee',
       100: '#e2d4d4',
@@ -32,18 +31,6 @@ export const theme: Theme & {
       700: '#47393b',
       800: '#2d2222',
       900: '#180808',
-    },
-    mudAlpha: {
-      50: 'rgba(150, 131, 132, 0.04)',
-      100: 'rgba(150, 131, 132, 0.06)',
-      200: 'rgba(150, 131, 132, 0.08)',
-      300: 'rgba(150, 131, 132, 0.16)',
-      400: 'rgba(150, 131, 132, 0.24)',
-      500: 'rgba(150, 131, 132, 0.36)',
-      600: 'rgba(150, 131, 132, 0.48)',
-      700: 'rgba(150, 131, 132, 0.64)',
-      800: 'rgba(150, 131, 132, 0.80)',
-      900: 'rgba(150, 131, 132, 0.92)',
     },
   },
 };

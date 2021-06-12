@@ -1,5 +1,5 @@
 {
-  "name": "@savetoken-ui/dapp",
+  "name": "@savetoken/dapp",
   "license": "MIT",
   "version": "0.1.0",
   "scripts": {
@@ -44,9 +44,9 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.23.2",
     "husky": "^6.0.0",
-    "lint-staged": "^10.0.10",
+    "lint-staged": "^11.0.0",
     "prettier": "^2.0.2",
-    "ts-node": "^9.1.1",
+    "ts-node": "^10.0.0",
     "typescript": "^4.1.3"
   }
 }

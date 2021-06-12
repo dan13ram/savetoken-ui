@@ -14,8 +14,11 @@
     "subgraph:deploy": "yarn workspace @savetoken/subgraph deploy",
     "dapp:build": "yarn workspace @savetoken/dapp build",
     "dapp:dev": "yarn workspace @savetoken/dapp dev",
+    "dapp:typecheck": "yarn workspace @savetoken/dapp typecheck",
+    "typecheck": "yarn dapp:typecheck",
     "lint": "eslint --ignore-path .gitignore \"./packages/**/*.{ts,tsx,js,jsx}\"",
-    "format": "prettier --ignore-path .gitignore --write \"{*,**/*}.{ts,tsx,js,jsx,json,md,sol}\""
+    "format": "prettier --ignore-path .gitignore --write \"{*,**/*}.{ts,tsx,js,jsx,json,md,sol}\"",
+    "prepare": "husky install"
   },
   "workspaces": {
     "nohoist": [
@@ -49,5 +52,8 @@
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.0"
+  },
+  "resolutions": {
+    "assemblyscript": "git+https://github.com/AssemblyScript/assemblyscript.git#v0.6"
   }
 }

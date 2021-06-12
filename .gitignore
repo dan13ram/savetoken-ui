@@ -25,6 +25,7 @@ yarn-error.log*
 
 # subgraph
 packages/subgraph/build/
+packages/subgraph/subgraph.yaml
 packages/subgraph/src/types/
 
 # No npm allowed

@@ -3,16 +3,19 @@
   "version": "1.0.0",
   "dependencies": {
     "@graphprotocol/graph-cli": "0.20.1",
-    "@graphprotocol/graph-ts": "0.20.0"
+    "@graphprotocol/graph-ts": "0.20.0",
+    "mustache": "^4.2.0"
   },
   "license": "MIT",
   "scripts": {
     "auth": "graph auth https://api.thegraph.com/ $GRAPH_ACCESS_TOKEN",
     "build": "graph build",
     "codegen": "graph codegen --output-dir src/types/",
-    "deploy-mumbai": "graph deploy dan13ram/savetoken-mumbai --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
     "create-local": "graph create --node http://localhost:8020/ dan13ram/savetoken",
     "remove-local": "graph remove --node http://localhost:8020/ dan13ram/savetoken",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dan13ram/savetoken"
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dan13ram/savetoken",
+    "prepare-mumbai": "mustache config/mumbai.json subgraph.template.yaml > subgraph.yaml",
+    "deploy-mumbai": "graph deploy dan13ram/savetoken-mumbai --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+    "format": "prettier --ignore-path ../../.gitignore --write \"{*,**/*}.{ts,json,md}\""
   }
 }

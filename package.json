@@ -13,10 +13,7 @@
     "subgraph:build": "yarn workspace @savetoken/subgraph build",
     "subgraph:deploy": "yarn workspace @savetoken/subgraph deploy",
     "dapp:build": "yarn workspace @savetoken/dapp build",
-    "dapp:eject": "yarn workspace @savetoken/dapp eject",
-    "dapp:ipfs": "yarn workspace @savetoken/dapp ipfs",
-    "dapp:start": "yarn workspace @savetoken/dapp start",
-    "dapp:test": "yarn workspace @savetoken/dapp test",
+    "dapp:dev": "yarn workspace @savetoken/dapp dev",
     "lint": "eslint --ignore-path .gitignore \"./packages/**/*.{ts,tsx,js,jsx}\"",
     "format": "prettier --ignore-path .gitignore --write \"{*,**/*}.{ts,tsx,js,jsx,json,md,sol}\""
   },

@@ -1,17 +1,20 @@
-import { CheckIcon } from '@chakra-ui/icons';
 import {
+  Button as ChakraButton,
   Flex,
   HStack,
-  Image,
   Popover,
   PopoverContent,
   PopoverTrigger,
   Text,
+  Tooltip,
+  useClipboard,
+  useDisclosure,
+  VStack,
 } from '@chakra-ui/react';
 import { getAddress } from '@ethersproject/address';
 import { Button } from 'components/common/Button';
 import { useWeb3 } from 'contexts/Web3Context';
-import makeBlockie from 'ethereum-blockies-base64';
+import { CopyIcon } from 'icons/CopyIcon';
 import React from 'react';
 import { getAccountString, getNetworkLabel } from 'utils/helpers';
 
@@ -25,84 +28,105 @@ export const WalletIndicator: React.FC = () => {
     disconnect,
     isGnosisSafe,
   } = useWeb3();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { hasCopied, onCopy } = useClipboard(
+    account ? getAddress(account) : '',
+  );
   return (
     <Flex align="center" m="1rem">
       {isConnected ? (
-        <Popover>
+        <Popover isOpen={isOpen} onClose={onClose}>
           <PopoverTrigger>
-            <HStack
+            <VStack
+              align="flex-end"
               w="100%"
-              p="0.5rem"
               spacing="0.5rem"
-              bg="white"
-              border="1px solid #D6D6D6"
-              boxShadow="0px 8px 16px rgba(0, 0, 0, 0.1)"
-              fontSize="xs"
-              cursor="pointer"
+              fontFamily="mono"
+              fontSize="sm"
             >
-              <Flex direction="column" justify="space-between">
-                <Text textTransform="uppercase" color="grey2">
-                  Current Network
+              <HStack
+                borderRadius="full"
+                border="1px solid #D6D6D6"
+                px="1rem"
+                spacing="0.75rem"
+                fontWeight="bold"
+                bg="white"
+              >
+                <Text textTransform="uppercase" color="grey4">
+                  {`Network: `}
                 </Text>
-                <HStack spacing="0.5rem" fontSize="sm">
-                  <Text color="#3F3D4B">{getNetworkLabel(chainId)}</Text>
-                  <CheckIcon
-                    color="white"
-                    bg="#28C081"
-                    borderRadius="50%"
-                    p="0.2rem"
-                    h="1.125rem"
-                    w="1.125rem"
-                  />
-                </HStack>
-              </Flex>
-              <HStack spacing="0.5rem">
-                <Flex w="2.5rem" h="2.5rem">
-                  <Image
-                    src={makeBlockie(getAddress(account))}
-                    alt="ethereum-blockies"
-                    w="100%"
-                    h="100%"
-                  />
-                </Flex>
-                <Flex direction="column" justify="space-between" fontSize="sm">
-                  <Text fontWeight="bold">Connected</Text>
-                  <Text>{getAccountString(account)}</Text>
+                <Text textTransform="uppercase" color="black">
+                  {getNetworkLabel(chainId)}
+                </Text>
+              </HStack>
+              <HStack
+                borderRadius="full"
+                border="1px solid #D6D6D6"
+                boxShadow="0px 8px 16px rgba(0, 0, 0, 0.1)"
+                px="1rem"
+                spacing="0.75rem"
+                fontWeight="bold"
+                bg="white"
+              >
+                <Text textTransform="uppercase" color="grey4">
+                  {`ID: `}
+                </Text>
+                <Text
+                  as="button"
+                  color="black"
+                  fontWeight="bold"
+                  onClick={onOpen}
+                  transition="color 0.25s"
+                  _hover={{ color: 'blackAlpha.600' }}
+                  textTransform="uppercase"
+                >
+                  {getAccountString(account)}
+                </Text>
+                <Flex
+                  as="button"
+                  color="grey4"
+                  onClick={onCopy}
+                  transition="color 0.25s"
+                  _hover={{ color: 'blackAlpha.600' }}
+                >
+                  <Tooltip
+                    label={hasCopied ? 'Copied!' : 'Copy to clipboard'}
+                    closeOnClick={false}
+                    placement="bottom-end"
+                  >
+                    <CopyIcon boxSize="0.65rem" />
+                  </Tooltip>
                 </Flex>
               </HStack>
-            </HStack>
+            </VStack>
           </PopoverTrigger>
           <PopoverContent
             bg="none"
             boxShadow="none"
             border="none"
             _focus={{ borderColor: 'transparent' }}
-            w="0"
-            h="0"
-            position="relative"
+            visibility="hidden"
           >
-            <Flex
-              w="100%"
-              minW="20rem"
-              justify="center"
-              position="absolute"
-              left="0"
-              right="0"
-              transform="translateX(-50%)"
-            >
-              <Button
-                onClick={disconnect}
+            <Flex w="100%" justify="flex-end" pr="1rem">
+              <ChakraButton
+                onClick={() => {
+                  disconnect();
+                  onClose();
+                }}
                 isDisabled={isGnosisSafe}
                 w="auto"
                 borderRadius="full"
                 fontFamily="mono"
-                fontSize="md"
-                size="sm"
+                fontSize="sm"
+                size="xs"
                 textTransform="uppercase"
-                bg="yellowPinkGradient"
+                bg="white"
+                _hover={{ bg: '#D6D6D6' }}
+                border="1px solid #D6D6D6"
+                px="1rem"
               >
                 Disconnect
-              </Button>
+              </ChakraButton>
             </Flex>
           </PopoverContent>
         </Popover>

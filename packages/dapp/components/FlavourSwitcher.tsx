@@ -9,6 +9,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { Button } from 'components/common/Button';
+import { useSave } from 'contexts/SaveContext';
 import React from 'react';
 import { getDateString } from 'utils/dateHelpers';
 
@@ -68,17 +69,21 @@ const FlavourItem: React.FC<FlavourItemProps> = ({
 
 export const FlavourSwitcher: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { saveToken, setSaveToken, saveTokenFlavors } = useSave();
   return (
     <>
       <Button
         onClick={onOpen}
-        bg="greyGradient"
+        bg={saveToken ? saveToken.color : 'greyGradient'}
         borderRadius="full"
         px="3rem"
         size="sm"
         w="17.5rem"
+        fontFamily="mono"
       >
-        Select Your Saver Flavour!
+        {saveToken
+          ? saveToken.label.toUpperCase()
+          : 'Select Your Saver Flavour!'}
       </Button>
       <Modal
         isOpen={isOpen}
@@ -124,20 +129,18 @@ export const FlavourSwitcher: React.FC = () => {
                 APR%
               </Text>
             </Grid>
-            <FlavourItem
-              label="DAI x Compound x Cover"
-              expiry={new Date()}
-              rate={7.423}
-              onClick={() => undefined}
-              color="yellowGreenGradient"
-            />
-            <FlavourItem
-              label="DAI x Compound x Opyn"
-              expiry={new Date()}
-              rate={7.423}
-              onClick={() => undefined}
-              color="yellowPinkGradient"
-            />
+            {saveTokenFlavors.map(saveTokenFlavor => (
+              <FlavourItem
+                label={saveTokenFlavor.label}
+                expiry={new Date(saveTokenFlavor.expiry)}
+                rate={saveTokenFlavor.yieldRate}
+                onClick={() => {
+                  setSaveToken(saveTokenFlavor);
+                  onClose();
+                }}
+                color={saveTokenFlavor.color}
+              />
+            ))}
           </VStack>
         </ModalContent>
       </Modal>

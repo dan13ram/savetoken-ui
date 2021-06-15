@@ -90,9 +90,13 @@ export const WalletIndicator: React.FC = () => {
                   _hover={{ color: 'blackAlpha.600' }}
                 >
                   <Tooltip
-                    label={hasCopied ? 'Copied!' : 'Copy to clipboard'}
+                    label={
+                      <Text fontSize="xs">
+                        {hasCopied ? 'Copied!' : 'Copy to clipboard'}
+                      </Text>
+                    }
                     closeOnClick={false}
-                    placement="bottom-end"
+                    placement="top-end"
                   >
                     <CopyIcon boxSize="0.65rem" />
                   </Tooltip>

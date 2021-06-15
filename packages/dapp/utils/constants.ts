@@ -2,6 +2,18 @@ const { NEXT_PUBLIC_INFURA_ID } = process.env;
 
 const INFURA_ID = NEXT_PUBLIC_INFURA_ID;
 
+export const SUPPORTED_NETWORKS = [80001];
+
+export const SIMULATION_NETWORK = 80001;
+
+export const SAVE_TOKENS_FLAVOURS = {
+  80001: {
+    ['0x13b6d3cc91d95c3b2e11fdb4bad00fdf1cfc2aac'.toLowerCase()]: {
+      color: 'yellowGreenGradient',
+    },
+  },
+};
+
 export const RPC_URLS = {
   1: `https://mainnet.infura.io/v3/${INFURA_ID}`,
   4: `https://rinkeby.infura.io/v3/${INFURA_ID}`,
@@ -36,4 +48,13 @@ export const EXPLORER_URLS = {
   100: 'https://blockscout.com/xdai/mainnet',
   137: 'https://explorer-mainnet.maticvigil.com',
   80001: 'https://explorer-mumbai.maticvigil.com',
+};
+
+export const SUBGRAPH_URLS = {
+  1: '',
+  4: '',
+  42: '',
+  100: '',
+  137: '',
+  80001: 'https://api.thegraph.com/subgraphs/name/dan13ram/savetoken-mumbai',
 };

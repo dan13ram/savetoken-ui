@@ -1,8 +1,8 @@
 import { Text, TextProps } from '@chakra-ui/react';
 import React from 'react';
 
-export const SaveToken: React.FC<TextProps & { symbol: string }> = ({
-  symbol,
+export const SaveToken: React.FC<TextProps & { symbol?: string }> = ({
+  symbol = 'DAI',
   ...props
 }) => (
   <Text {...props}>

@@ -14,11 +14,13 @@
     "subgraph:deploy": "yarn workspace @savetoken/subgraph deploy",
     "dapp:build": "yarn workspace @savetoken/dapp build",
     "dapp:dev": "yarn workspace @savetoken/dapp dev",
+    "dapp:generate": "yarn workspace @savetoken/dapp generate",
     "dapp:typecheck": "yarn workspace @savetoken/dapp typecheck",
     "typecheck": "yarn dapp:typecheck",
+    "generate": "yarn dapp:generate",
     "lint": "eslint --ignore-path .gitignore \"./packages/**/*.{ts,tsx,js,jsx}\"",
     "format": "prettier --ignore-path .gitignore --write \"{*,**/*}.{ts,tsx,js,jsx,json,md,sol}\"",
-    "prepare": "husky install"
+    "prepare": "yarn generate && husky install"
   },
   "workspaces": {
     "nohoist": [

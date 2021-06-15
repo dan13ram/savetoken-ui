@@ -12,7 +12,7 @@ export const Introduction: React.FC<StackProps> = props => {
   return (
     <VStack spacing="1rem" my="4rem" {...props}>
       <Text textAlign="center">
-        <SaveToken as="span" symbol="DAI" />
+        <SaveToken as="span" />
         <Text as="span">
           {
             ' is an easy way to open a high-interest, insured savings account - all without a bank!'
@@ -24,7 +24,7 @@ export const Introduction: React.FC<StackProps> = props => {
       </Text>
       <Text textAlign="center">
         <Text as="span">{'Your '}</Text>
-        <SaveToken as="span" symbol="DAI" />
+        <SaveToken as="span" />
         <Text as="span">
           {
             ' account will start earning interest instantly, and your deposit will be protected until the date the insurance expires.'

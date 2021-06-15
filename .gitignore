@@ -13,6 +13,7 @@ node_modules
 
 # production
 **/build
+**/autogen
 
 # misc
 .DS_Store

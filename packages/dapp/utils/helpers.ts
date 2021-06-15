@@ -1,8 +1,11 @@
 import { getAddress } from '@ethersproject/address';
-import { NETWORK_LABELS } from 'utils/constants';
+import { NETWORK_LABELS, SUBGRAPH_URLS } from 'utils/constants';
 
 export const getNetworkLabel = (chainId: number): string =>
   NETWORK_LABELS[chainId] || 'Unknown';
+
+export const getSubgraphUrl = (chainId: number): string =>
+  SUBGRAPH_URLS[chainId] || '';
 
 export const logError = (error: Error | undefined): void => {
   if (error) {

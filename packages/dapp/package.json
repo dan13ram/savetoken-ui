@@ -9,7 +9,8 @@
     "typecheck": "tsc --pretty --noEmit",
     "format": "prettier --write .",
     "lint": "eslint \"./**/*.{ts,tsx,js,jsx}\"",
-    "generate": "graphql-codegen --config=codegen.yml"
+    "generate": "graphql-codegen --config=codegen.yml",
+    "prepare": "yarn generate"
   },
   "lint-staged": {
     "*.@(ts|tsx)": [

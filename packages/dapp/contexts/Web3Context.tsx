@@ -29,6 +29,7 @@ export type Web3ContextType = {
   isConnecting: boolean;
   isConnected: boolean;
   isGnosisSafe: boolean;
+  initialLoadDone: boolean;
   account: string | undefined;
   chainId: number | undefined;
   provider: providers.Web3Provider | undefined;
@@ -40,6 +41,7 @@ const Web3Context = React.createContext<Web3ContextType>({
   isConnecting: false,
   isConnected: false,
   isGnosisSafe: false,
+  initialLoadDone: false,
   account: undefined,
   chainId: undefined,
   provider: undefined,
@@ -56,6 +58,7 @@ export const Web3Provider: React.FC = ({ children }) => {
     useState<Web3StateType>({});
   const [isGnosisSafe, setGnosisSafe] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [initialLoadDone, setInitialLoadDone] = useState(false);
 
   const setWeb3Provider = useCallback(async (prov, initialCall = false) => {
     try {
@@ -118,19 +121,17 @@ export const Web3Provider: React.FC = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    // if (window.ethereum) {
-    //   window.ethereum.autoRefreshOnNetworkChange = false;
-    // }
     const load = async () => {
       if (
         web3Modal &&
         ((await web3Modal.isSafeApp()) ||
           (web3Modal as Web3Modal).cachedProvider)
       ) {
-        connectWeb3();
+        await connectWeb3();
       } else {
         setLoading(false);
       }
+      setInitialLoadDone(true);
     };
     load();
   }, [connectWeb3]);
@@ -146,6 +147,7 @@ export const Web3Provider: React.FC = ({ children }) => {
         chainId: providerChainId,
         account,
         isConnected: !!ethersProvider && !!account,
+        initialLoadDone,
       }}
     >
       {children}

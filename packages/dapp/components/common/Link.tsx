@@ -17,7 +17,6 @@ export const Link: React.FC<Props> = ({
   scroll = true,
   shallow,
   isExternal,
-  _hover,
   ...props
 }) => {
   if (isExternal && typeof href === 'string') {

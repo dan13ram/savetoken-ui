@@ -4,7 +4,15 @@ import { css } from '@emotion/react';
 export const theme: Theme & {
   colors: Theme['colors'] & {
     greyText: string;
-    mud: ColorHues;
+    grey4: string;
+    darkPurple: ColorHues;
+    lightGreen: ColorHues;
+    darkGreen: ColorHues;
+    lightBlue: ColorHues;
+    darkBlue: ColorHues;
+    darkPink: ColorHues;
+    greyGradient: string;
+    yellowPinkGradient: string;
   };
   fonts: Theme['fonts'] & {
     grotesk: string;
@@ -20,17 +28,128 @@ export const theme: Theme & {
   colors: {
     ...chakraTheme.colors,
     greyText: '#A2A2A2',
-    mud: {
-      50: '#ffedee',
-      100: '#e2d4d4',
-      200: '#c8b9b9',
-      300: '#ae9e9f',
-      400: '#968384',
-      500: '#7c696a',
-      600: '#625253',
-      700: '#47393b',
-      800: '#2d2222',
-      900: '#180808',
+    grey4: '#BDBDBD',
+    greyGradient: 'linear-gradient(135deg, #FFFFFF 0%, #CCCCCC 100%)',
+    yellowPinkGradient: 'linear-gradient(135deg, #FFD245 0%, #B6509E 100%)',
+    yellow: {
+      50: '#fff9db',
+      100: '#ffecaf',
+      200: '#ffe07f',
+      300: '#ffd44d',
+      400: '#ffc71e',
+      500: '#e6ae06',
+      600: '#b38700',
+      700: '#806100',
+      800: '#4e3a00',
+      900: '#1d1300',
+    },
+    pink: {
+      50: '#ffeafb',
+      100: '#ecc7e4',
+      200: '#dba4ce',
+      300: '#cb80ba',
+      400: '#bb5da5',
+      500: '#a2448c',
+      600: '#7f346d',
+      700: '#5b254f',
+      800: '#381531',
+      900: '#180415',
+    },
+    green: {
+      50: '#d8fff7',
+      100: '#acffe8',
+      200: '#7bffda',
+      300: '#49ffcb',
+      400: '#1affbc',
+      500: '#00e6a2',
+      600: '#00b37e',
+      700: '#008059',
+      800: '#004e35',
+      900: '#001c10',
+    },
+    blue: {
+      50: '#e2f3ff',
+      100: '#bad9f8',
+      200: '#91bded',
+      300: '#67a3e3',
+      400: '#3f89da',
+      500: '#256fc0',
+      600: '#1a5797',
+      700: '#0f3e6d',
+      800: '#032544',
+      900: '#000d1c',
+    },
+    darkPurple: {
+      50: '#edf0ff',
+      100: '#ced1e7',
+      200: '#afb2d1',
+      300: '#8f94bd',
+      400: '#6f75a9',
+      500: '#555b8f',
+      600: '#424770',
+      700: '#2f3351',
+      800: '#1b1e33',
+      900: '#070917',
+    },
+    darkGreen: {
+      50: '#e0fcf4',
+      100: '#c0eedf',
+      200: '#9de0cc',
+      300: '#78d2b7',
+      400: '#54c5a3',
+      500: '#3aab8a',
+      600: '#2a856b',
+      700: '#1b5f4c',
+      800: '#093a2d',
+      900: '#00160d',
+    },
+    darkPink: {
+      50: '#ffe1f5',
+      100: '#ffb1d8',
+      200: '#ff7ebc',
+      300: '#ff4ca2',
+      400: '#ff1a87',
+      500: '#e6006e',
+      600: '#b40055',
+      700: '#82003d',
+      800: '#500025',
+      900: '#20000e',
+    },
+    darkBlue: {
+      50: '#e3e8ff',
+      100: '#b2bbff',
+      200: '#808eff',
+      300: '#4e61fe',
+      400: '#2035fd',
+      500: '#0a1be4',
+      600: '#0414b2',
+      700: '#000e80',
+      800: '#00094f',
+      900: '#00021f',
+    },
+    lightGreen: {
+      50: '#d8fff7',
+      100: '#acffe8',
+      200: '#7bffda',
+      300: '#49ffcb',
+      400: '#1affbc',
+      500: '#00e6a2',
+      600: '#00b37e',
+      700: '#008059',
+      800: '#004e35',
+      900: '#001c10',
+    },
+    lightBlue: {
+      50: '#ddf2ff',
+      100: '#aed6ff',
+      200: '#7dbbff',
+      300: '#4aa0ff',
+      400: '#1a85ff',
+      500: '#006be6',
+      600: '#0053b4',
+      700: '#003c82',
+      800: '#002451',
+      900: '#000d21',
     },
   },
 };
@@ -42,5 +161,6 @@ export const globalStyles = css`
   */
   .js-focus-visible :focus:not([data-focus-visible-added]) {
     box-shadow: none;
+    outline: none;
   }
 `;

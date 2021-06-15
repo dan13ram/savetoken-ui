@@ -1,6 +1,5 @@
 import { CheckIcon } from '@chakra-ui/icons';
 import {
-  Button,
   Flex,
   HStack,
   Image,
@@ -10,6 +9,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { getAddress } from '@ethersproject/address';
+import { Button } from 'components/common/Button';
 import { useWeb3 } from 'contexts/Web3Context';
 import makeBlockie from 'ethereum-blockies-base64';
 import React from 'react';
@@ -23,6 +23,7 @@ export const WalletIndicator: React.FC = () => {
     isConnected,
     isConnecting,
     disconnect,
+    isGnosisSafe,
   } = useWeb3();
   return (
     <Flex align="center" m="1rem">
@@ -36,14 +37,14 @@ export const WalletIndicator: React.FC = () => {
               bg="white"
               border="1px solid #D6D6D6"
               boxShadow="0px 8px 16px rgba(0, 0, 0, 0.1)"
-              fontSize="sm"
+              fontSize="xs"
               cursor="pointer"
             >
-              <Flex direction="column">
+              <Flex direction="column" justify="space-between">
                 <Text textTransform="uppercase" color="greyText">
                   Current Network
                 </Text>
-                <HStack spacing="0.5rem" fontSize="md">
+                <HStack spacing="0.5rem" fontSize="sm">
                   <Text color="#3F3D4B">{getNetworkLabel(chainId)}</Text>
                   <CheckIcon
                     color="white"
@@ -64,23 +65,41 @@ export const WalletIndicator: React.FC = () => {
                     h="100%"
                   />
                 </Flex>
-                <Flex direction="column" justify="space-between">
+                <Flex direction="column" justify="space-between" fontSize="sm">
                   <Text fontWeight="bold">Connected</Text>
                   <Text>{getAccountString(account)}</Text>
                 </Flex>
               </HStack>
             </HStack>
           </PopoverTrigger>
-          <PopoverContent bg="none" boxShadow="none" border="none" _focus={{}}>
-            <Flex w="100%" justify="center">
+          <PopoverContent
+            bg="none"
+            boxShadow="none"
+            border="none"
+            _focus={{ borderColor: 'transparent' }}
+            w="0"
+            h="0"
+            position="relative"
+          >
+            <Flex
+              w="100%"
+              minW="20rem"
+              justify="center"
+              position="absolute"
+              left="0"
+              right="0"
+              transform="translateX(-50%)"
+            >
               <Button
                 onClick={disconnect}
+                isDisabled={isGnosisSafe}
+                w="auto"
                 borderRadius="full"
                 fontFamily="mono"
-                fontSize="lg"
+                fontSize="md"
+                size="sm"
                 textTransform="uppercase"
-                background="linear-gradient(135deg, #FFD245 0%, #B6509E 100%)"
-                border="4px solid #000000"
+                bg="yellowPinkGradient"
               >
                 Disconnect
               </Button>
@@ -93,10 +112,10 @@ export const WalletIndicator: React.FC = () => {
           isLoading={isConnecting}
           borderRadius="full"
           fontFamily="mono"
-          fontSize="lg"
+          fontSize="md"
+          size="sm"
           textTransform="uppercase"
-          background="linear-gradient(135deg, #FFD245 0%, #B6509E 100%)"
-          border="4px solid #000000"
+          bg="yellowPinkGradient"
         >
           Connect Wallet
         </Button>

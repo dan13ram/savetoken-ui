@@ -76,6 +76,7 @@ export const FlavourSwitcher: React.FC = () => {
         borderRadius="full"
         px="3rem"
         size="sm"
+        w="17.5rem"
       >
         Select Your Saver Flavour!
       </Button>

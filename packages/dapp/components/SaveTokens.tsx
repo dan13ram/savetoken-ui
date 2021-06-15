@@ -1,8 +1,22 @@
-import { StackProps, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
+import { Collapse, StackProps, VStack } from '@chakra-ui/react';
+import { DepositTokens } from 'components/DepositTokens';
+import { FlavourSwitcher } from 'components/FlavourSwitcher';
+import { ManageSwitcher } from 'components/ManageSwitcher';
+import { ManageTokens } from 'components/ManageTokens';
+import React, { useState } from 'react';
 
-export const SaveTokens: React.FC<StackProps> = props => (
-  <VStack spacing="1rem" {...props}>
-    <Text textAlign="center"> Save Tokens UI </Text>
-  </VStack>
-);
+export const SaveTokens: React.FC<StackProps> = props => {
+  const [isManaging, setManaging] = useState(false);
+  return (
+    <VStack spacing="1rem" {...props}>
+      <ManageSwitcher isManaging={isManaging} setManaging={setManaging} />
+      <FlavourSwitcher />
+      <Collapse in={!isManaging}>
+        <DepositTokens />
+      </Collapse>
+      <Collapse in={isManaging}>
+        <ManageTokens />
+      </Collapse>
+    </VStack>
+  );
+};

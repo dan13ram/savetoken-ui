@@ -3,6 +3,7 @@ import { Button } from 'components/common/Button';
 import { Link } from 'components/common/Link';
 import { SaveToken } from 'components/common/SaveToken';
 import { DepositTokens } from 'components/DepositTokens';
+import { FlavourSwitcher } from 'components/FlavourSwitcher';
 import { useWeb3 } from 'contexts/Web3Context';
 import React from 'react';
 
@@ -43,7 +44,7 @@ export const Introduction: React.FC<StackProps> = props => {
       </Text>
       <Flex h="2rem" />
       <Button
-        background="greyGradient"
+        bg="greyGradient"
         py="1.5rem"
         px="2.5rem"
         size="lg"
@@ -57,6 +58,7 @@ export const Introduction: React.FC<StackProps> = props => {
       <Flex justify="center" align="center" color="grey4" p="1rem">
         <Text textAlign="center">Or Simulate</Text>
       </Flex>
+      <FlavourSwitcher />
       <DepositTokens />
     </VStack>
   );

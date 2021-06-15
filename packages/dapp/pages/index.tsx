@@ -10,16 +10,18 @@ const HomePage: React.FC = () => {
   const { isConnected, initialLoadDone } = useWeb3();
   return (
     <PageContainer>
-      {initialLoadDone && (
-        <SaveProvider>
-          <Collapse in={!isConnected} animateOpacity>
-            <Introduction />
-          </Collapse>
-          <Collapse in={isConnected} animateOpacity>
-            <SaveTokens />
-          </Collapse>
-        </SaveProvider>
-      )}
+      <SaveProvider>
+        {initialLoadDone && (
+          <>
+            <Collapse in={!isConnected} animateOpacity>
+              <Introduction />
+            </Collapse>
+            <Collapse in={isConnected} animateOpacity>
+              <SaveTokens />
+            </Collapse>
+          </>
+        )}
+      </SaveProvider>
     </PageContainer>
   );
 };

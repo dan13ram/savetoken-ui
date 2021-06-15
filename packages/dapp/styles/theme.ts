@@ -3,8 +3,9 @@ import { css } from '@emotion/react';
 
 export const theme: Theme & {
   colors: Theme['colors'] & {
-    greyText: string;
+    grey2: string;
     grey4: string;
+    grey6: string;
     darkPurple: ColorHues;
     lightGreen: ColorHues;
     darkGreen: ColorHues;
@@ -13,6 +14,13 @@ export const theme: Theme & {
     darkPink: ColorHues;
     greyGradient: string;
     yellowPinkGradient: string;
+    yellowGreenGradient: string;
+    greenBlueGradient: string;
+    pinkBlueGradient: string;
+    greenBlueGradientDark: string;
+    pinkBlueGradientDark: string;
+    greenGradient: string;
+    blueGradient: string;
   };
   fonts: Theme['fonts'] & {
     grotesk: string;
@@ -27,10 +35,18 @@ export const theme: Theme & {
   },
   colors: {
     ...chakraTheme.colors,
-    greyText: '#A2A2A2',
+    grey2: '#A2A2A2',
     grey4: '#BDBDBD',
+    grey6: '#F2F2F2',
     greyGradient: 'linear-gradient(135deg, #FFFFFF 0%, #CCCCCC 100%)',
     yellowPinkGradient: 'linear-gradient(135deg, #FFD245 0%, #B6509E 100%)',
+    yellowGreenGradient: 'linear-gradient(135deg, #FFD245 0%, #00D395 100%)',
+    greenBlueGradient: 'linear-gradient(135deg, #2775CA 0%, #00D395 100%)',
+    pinkBlueGradient: 'linear-gradient(135deg, #2775CA 0%, #B6509E 100%)',
+    greenBlueGradientDark: 'linear-gradient(135deg, #454A75 0%, #4EC3A0 100%)',
+    pinkBlueGradientDark: 'linear-gradient(135deg, #FF007A 0%, #697AFF 100%)',
+    greenGradient: 'linear-gradient(135deg, #00D395 0%, #4EC3A0 100%)',
+    blueGradient: 'linear-gradient(135deg, #006AE3 0%, #697AFF 100%)',
     yellow: {
       50: '#fff9db',
       100: '#ffecaf',
@@ -162,5 +178,8 @@ export const globalStyles = css`
   .js-focus-visible :focus:not([data-focus-visible-added]) {
     box-shadow: none;
     outline: none;
+  }
+  :focus-visible {
+    outline: rgba(66, 153, 225, 0.6) auto 1px;
   }
 `;

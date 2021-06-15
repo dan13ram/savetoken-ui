@@ -41,7 +41,7 @@ export const WalletIndicator: React.FC = () => {
               cursor="pointer"
             >
               <Flex direction="column" justify="space-between">
-                <Text textTransform="uppercase" color="greyText">
+                <Text textTransform="uppercase" color="grey2">
                   Current Network
                 </Text>
                 <HStack spacing="0.5rem" fontSize="sm">

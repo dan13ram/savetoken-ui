@@ -1,20 +1,19 @@
-# type Token @entity {
-#   id: ID!
-#   decimals: Int!
-#   name: String!
-#   symbol: String!
-# }
+type Token @entity {
+  id: ID!
+  decimals: Int!
+  name: String!
+  symbol: String!
+}
 
 type SaveToken @entity {
   id: ID! # address
   address: Bytes!
   creationTx: Bytes!
   factoryAddress: Bytes!
-  # underlyingToken: Token!
-  # assetToken: Token!
-  # assetAdapter: Bytes!
-  # insuranceToken: Token!
-  # insuranceAdapter: Bytes!
-  # exchangeFactory: Bytes!
-  # farmerAddress: Bytes!
+  token: Token!
+  underlyingToken: Token!
+  assetToken: Token!
+  assetAdapter: Bytes!
+  insuranceToken: Token!
+  insuranceAdapter: Bytes!
 }

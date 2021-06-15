@@ -6,7 +6,7 @@ dataSources:
     name: SaveTokenFactory
     network: {{network}}
     source:
-      abi: SaveTokenFactoryABI
+      abi: SaveTokenFactory
       startBlock: {{startBlock}}
       address: "{{saveTokenFactory}}"
     mapping:
@@ -15,8 +15,12 @@ dataSources:
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       abis:
-        - name: SaveTokenFactoryABI
+        - name: SaveTokenFactory
           file: ./src/abis/SaveTokenFactory.json
+        - name: SaveToken
+          file: ./src/abis/SaveToken.json
+        - name: ERC20Metadata
+          file: ./src/abis/ERC20Metadata.json
       entities:
         - SaveToken
       eventHandlers:

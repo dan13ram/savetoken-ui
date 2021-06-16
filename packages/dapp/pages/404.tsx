@@ -4,7 +4,7 @@ import { Link } from 'components/common/Link';
 import React from 'react';
 
 const NotFoundPage: React.FC = () => (
-  <PageContainer>
+  <PageContainer align="center">
     <Text textAlign="center"> 404 - This page could not be found. </Text>
     <Link href="/" _hover={{}}>
       <Button

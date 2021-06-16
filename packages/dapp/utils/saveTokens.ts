@@ -45,8 +45,7 @@ const parseSaveToken = (
   } = saveToken;
 
   const { name } = token;
-  // const { symbol } = underlyingToken;
-  const symbol = 'USDC';
+  const { symbol } = underlyingToken;
 
   const nameParts = name.split('_');
 
@@ -70,7 +69,7 @@ const parseSaveToken = (
     expiry: expiry.getTime(),
     assetType,
     insuranceType,
-    underlyingToken: { ...underlyingToken, symbol } as Token,
+    underlyingToken: underlyingToken as Token,
     insuranceToken: insuranceToken as Token,
     assetToken: assetToken as Token,
     token: token as Token,

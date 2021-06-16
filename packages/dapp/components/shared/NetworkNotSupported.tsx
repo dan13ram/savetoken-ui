@@ -8,7 +8,7 @@ import { getNetworkLabel } from 'utils/helpers';
 export const NetworkNotSupported: React.FC = () => {
   const { disconnect, isGnosisSafe } = useWeb3();
   return (
-    <PageContainer>
+    <PageContainer align="center">
       <Text textAlign="center" fontSize="lg" fontWeight="bold">
         Current network is not supported!
       </Text>

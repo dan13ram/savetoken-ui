@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 export const SaveTokens: React.FC<StackProps> = props => {
   const [isManaging, setManaging] = useState(false);
   return (
-    <VStack spacing="1rem" {...props}>
+    <VStack spacing="1rem" {...props} w="100%">
       <ManageSwitcher isManaging={isManaging} setManaging={setManaging} />
       <FlavourSwitcher />
       <Collapse in={!isManaging}>

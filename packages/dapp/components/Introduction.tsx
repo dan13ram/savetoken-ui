@@ -45,17 +45,26 @@ export const Introduction: React.FC<StackProps> = props => {
       <Flex h="2rem" />
       <Button
         bg="greyGradient"
-        py="1.5rem"
+        py="1.75rem"
         px="2.5rem"
         size="lg"
-        fontSize="xxl"
+        fontSize="1.25rem"
+        maxW="20rem"
+        w="100%"
         borderRadius="1.25rem"
         onClick={connectWeb3}
         isLoading={isConnecting}
       >
         Connect Wallet to Begin
       </Button>
-      <Flex justify="center" align="center" color="grey4" p="1rem">
+      <Flex
+        justify="center"
+        align="center"
+        color="black"
+        p="1rem"
+        opacity="0.25"
+        fontWeight="bold"
+      >
         <Text textAlign="center">Or Simulate</Text>
       </Flex>
       <FlavourSwitcher />

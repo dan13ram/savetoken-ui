@@ -78,8 +78,10 @@ export const FlavourSwitcher: React.FC = () => {
         borderRadius="full"
         px="3rem"
         size="sm"
-        w="17.5rem"
+        maxW="20rem"
+        w="100%"
         fontFamily="mono"
+        fontWeight="bold"
       >
         {saveToken
           ? saveToken.label.toUpperCase()

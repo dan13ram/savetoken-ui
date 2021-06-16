@@ -10,23 +10,26 @@ export const Button: React.FC<Props> = ({
   ...props
 }) => {
   const background = inputBackground || inputBg;
+  const reverse = background === 'greyGradient';
   return (
     <ChakraButton
       border="3px solid #000000"
-      background={background}
+      background="none"
       position="relative"
       overflow="hidden"
       {...props}
     >
       <Flex
-        w="150%"
+        w="100%"
         h="100%"
         position="absolute"
-        left="0"
+        left={reverse ? undefined : '0'}
+        right={reverse ? '0' : undefined}
         top="0"
-        transform="translateX(-25%)"
-        transition="transform 0.25s"
-        _hover={{ transform: 'translateX(0%)' }}
+        transition="width 0.25s"
+        _hover={{
+          w: '200%',
+        }}
         background={background}
       />
       <Text

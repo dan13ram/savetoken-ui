@@ -6,6 +6,8 @@ export const SUPPORTED_NETWORKS = [80001];
 
 export const SIMULATION_NETWORK = 80001;
 
+export const DEFAULT_TOKEN_SYMBOL = 'DAI';
+
 export const SAVE_TOKENS_FLAVOURS = {
   80001: {
     ['0x13b6d3cc91d95c3b2e11fdb4bad00fdf1cfc2aac'.toLowerCase()]: {

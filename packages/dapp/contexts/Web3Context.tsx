@@ -2,7 +2,7 @@ import { SafeAppWeb3Modal } from '@gnosis.pm/safe-apps-web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import { providers } from 'ethers';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { RPC_URLS } from 'utils/constants';
+import { DEFAULT_TOKEN_SYMBOL, RPC_URLS } from 'utils/constants';
 import { logError } from 'utils/helpers';
 import Web3Modal from 'web3modal';
 
@@ -33,6 +33,8 @@ export type Web3ContextType = {
   account: string | undefined;
   chainId: number | undefined;
   provider: providers.Web3Provider | undefined;
+  titleSymbol: string;
+  setTitleSymbol: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const Web3Context = React.createContext<Web3ContextType>({
@@ -45,6 +47,8 @@ const Web3Context = React.createContext<Web3ContextType>({
   account: undefined,
   chainId: undefined,
   provider: undefined,
+  titleSymbol: DEFAULT_TOKEN_SYMBOL,
+  setTitleSymbol: () => undefined,
 });
 
 export type Web3StateType = {
@@ -54,8 +58,9 @@ export type Web3StateType = {
 };
 
 export const Web3Provider: React.FC = ({ children }) => {
-  const [{ providerChainId, ethersProvider, account }, setWeb3State] =
-    useState<Web3StateType>({});
+  const [{ providerChainId, ethersProvider, account }, setWeb3State] = useState<
+    Web3StateType
+  >({});
   const [isGnosisSafe, setGnosisSafe] = useState(false);
   const [loading, setLoading] = useState(true);
   const [initialLoadDone, setInitialLoadDone] = useState(false);
@@ -136,6 +141,12 @@ export const Web3Provider: React.FC = ({ children }) => {
     load();
   }, [connectWeb3]);
 
+  const [titleSymbol, setTitleSymbol] = useState<string>(DEFAULT_TOKEN_SYMBOL);
+
+  useEffect(() => {
+    setTitleSymbol(DEFAULT_TOKEN_SYMBOL);
+  }, [providerChainId]);
+
   return (
     <Web3Context.Provider
       value={{
@@ -146,8 +157,10 @@ export const Web3Provider: React.FC = ({ children }) => {
         disconnect,
         chainId: providerChainId,
         account,
-        isConnected: !!ethersProvider && !!account,
+        isConnected: !!ethersProvider && !!account && !!providerChainId,
         initialLoadDone,
+        titleSymbol,
+        setTitleSymbol,
       }}
     >
       {children}

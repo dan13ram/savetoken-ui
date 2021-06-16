@@ -1,25 +1,26 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { SIMULATION_NETWORK } from 'utils/constants';
+import { useWeb3 } from 'contexts/Web3Context';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { DEFAULT_TOKEN_SYMBOL, SIMULATION_NETWORK } from 'utils/constants';
 import { SaveToken, SaveTokenFlavors } from 'utils/types';
-
-import { useWeb3 } from './Web3Context';
 
 export type SaveContextType = {
   saveTokenFlavors: SaveToken[];
   saveToken: SaveToken | undefined;
   setSaveToken: React.Dispatch<React.SetStateAction<SaveToken | undefined>>;
+  symbol: string;
 };
 
 const SaveContext = React.createContext<SaveContextType>({
   saveTokenFlavors: [],
   saveToken: undefined,
   setSaveToken: () => undefined,
+  symbol: 'DAI',
 });
 
 export const SaveProvider: React.FC<{
   saveTokenFlavors: SaveTokenFlavors;
 }> = ({ children, saveTokenFlavors: saveTokenFlavorsForChain }) => {
-  const { account, chainId } = useWeb3();
+  const { account, chainId, setTitleSymbol } = useWeb3();
 
   const [saveTokenFlavors, setSaveTokenFlavors] = useState<SaveToken[]>([]);
   const [saveToken, setSaveToken] = useState<SaveToken | undefined>();
@@ -37,8 +38,19 @@ export const SaveProvider: React.FC<{
     }
   }, [account, chainId, saveTokenFlavorsForChain]);
 
+  const symbol = useMemo(
+    () => saveToken?.underlyingToken.symbol || DEFAULT_TOKEN_SYMBOL,
+    [saveToken],
+  );
+
+  useEffect(() => {
+    setTitleSymbol(symbol);
+  }, [symbol, setTitleSymbol]);
+
   return (
-    <SaveContext.Provider value={{ saveTokenFlavors, saveToken, setSaveToken }}>
+    <SaveContext.Provider
+      value={{ saveTokenFlavors, saveToken, setSaveToken, symbol }}
+    >
       {children}
     </SaveContext.Provider>
   );

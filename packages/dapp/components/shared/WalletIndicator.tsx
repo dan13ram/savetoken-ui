@@ -72,12 +72,12 @@ export const WalletIndicator: React.FC = () => {
                   {`ID: `}
                 </Text>
                 <Text
-                  as="button"
+                  as={isGnosisSafe ? 'p' : 'button'}
                   color="black"
                   fontWeight="bold"
-                  onClick={onOpen}
+                  onClick={isGnosisSafe ? undefined : onOpen}
                   transition="color 0.25s"
-                  _hover={{ color: 'blackAlpha.600' }}
+                  _hover={{ color: isGnosisSafe ? 'black' : 'blackAlpha.600' }}
                   textTransform="uppercase"
                 >
                   {getAccountString(account)}
@@ -117,7 +117,6 @@ export const WalletIndicator: React.FC = () => {
                   disconnect();
                   onClose();
                 }}
-                isDisabled={isGnosisSafe}
                 w="auto"
                 borderRadius="full"
                 fontFamily="mono"

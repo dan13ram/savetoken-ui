@@ -17,7 +17,7 @@ export const FlavourSwitcher: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { saveToken, setSaveToken, saveTokenFlavors } = useSave();
   return (
-    <>
+    <Flex w="100%" justify="center" align="center">
       <Button
         onClick={onOpen}
         bg={saveToken ? saveToken.color : 'greyGradient'}
@@ -93,6 +93,6 @@ export const FlavourSwitcher: React.FC = () => {
           </VStack>
         </ModalContent>
       </Modal>
-    </>
+    </Flex>
   );
 };

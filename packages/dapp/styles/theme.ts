@@ -29,7 +29,7 @@ export const theme: Theme & {
   ...chakraTheme,
   fonts: {
     ...chakraTheme.fonts,
-    body: `'Inter', sans-serif`,
+    body: `'Helvetica', 'Inter', sans-serif`,
     mono: `'Space Mono', monospace`,
     grotesk: `'Space Grotesk', sans-serif`,
   },

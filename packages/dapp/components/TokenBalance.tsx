@@ -26,7 +26,6 @@ export const TokenBalance: React.FC<FlexProps> = props => {
     <Flex pt="1.5rem" w="100%" justify="center" align="center" {...props}>
       <Flex
         pt="calc(3.5rem - 6px)"
-        maxW="28.0625rem"
         w="100%"
         direction="column"
         border="3px solid black"

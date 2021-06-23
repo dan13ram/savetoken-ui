@@ -5,6 +5,7 @@ export const theme: Theme & {
   colors: Theme['colors'] & {
     grey2: string;
     grey4: string;
+    grey5: string;
     grey6: string;
     darkPurple: ColorHues;
     lightGreen: ColorHues;
@@ -37,6 +38,7 @@ export const theme: Theme & {
     ...chakraTheme.colors,
     grey2: '#A2A2A2',
     grey4: '#BDBDBD',
+    grey5: '#D6D6D6',
     grey6: '#F2F2F2',
     greyGradient: 'linear-gradient(135deg, #FFFFFF 0%, #CCCCCC 100%)',
     yellowPinkGradient: 'linear-gradient(135deg, #FFD245 0%, #B6509E 100%)',

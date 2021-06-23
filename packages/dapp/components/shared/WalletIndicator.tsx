@@ -124,7 +124,7 @@ export const WalletIndicator: React.FC = () => {
                 size="xs"
                 textTransform="uppercase"
                 bg="white"
-                _hover={{ bg: '#D6D6D6' }}
+                _hover={{ bg: 'grey5' }}
                 border="1px solid #D6D6D6"
                 px="1rem"
               >

@@ -6,6 +6,7 @@ export const PageContainer: React.FC<StackProps> = ({ children, ...props }) => (
     w="100%"
     spacing="1rem"
     p="1rem"
+    pb="4rem"
     maxW="35rem"
     align="stretch"
     {...props}

@@ -59,7 +59,7 @@ export const Input: React.FC<Props> = ({
         }}
         {...props}
       />
-      <InputRightElement h="100%" w="10rem">
+      <InputRightElement h="100%" w="10rem" justify="flex-end">
         <ChakraButton
           variant="link"
           fontWeight="900"
@@ -81,6 +81,7 @@ export const Input: React.FC<Props> = ({
           borderStyle="solid"
           borderColor={borderColor}
           onClick={onButtonClick}
+          minW="6.5rem"
         >
           {buttonText}
         </Button>

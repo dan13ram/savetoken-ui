@@ -1,64 +1,88 @@
-import { Button, Flex } from '@chakra-ui/react';
+import { ButtonProps, Flex } from '@chakra-ui/react';
+import { Button } from 'components/common/Button';
+import { useSave } from 'contexts/SaveContext';
 import React from 'react';
 
-type Props = {
-  isManaging: boolean;
-  setManaging: React.Dispatch<React.SetStateAction<boolean>>;
+const SwitchButton: React.FC<ButtonProps & {
+  index: number;
+  selected: number;
+  select: () => void;
+}> = ({ selected: selectedIndex, index, select, bg, ...props }) => {
+  const selected = selectedIndex % 3 === index;
+
+  const zIndex = index === 1 ? '1' : 'initial';
+  return (
+    <Button
+      onClick={select}
+      textTransform="uppercase"
+      minW="9.65rem"
+      px="2.55rem"
+      h="calc(100% + 6px)"
+      size="sm"
+      borderRadius="full"
+      position="absolute"
+      left="-3px"
+      top="-3px"
+      fontFamily="mono"
+      fontSize="md"
+      _hover={{ bg: 'grey4' }}
+      border="3px solid black"
+      bg={selected ? bg : 'greyGradient'}
+      zIndex={selected ? '2' : zIndex}
+      fontWeight={selected ? 'bold' : 'normal'}
+      {...props}
+    />
+  );
 };
 
-export const ManageSwitcher: React.FC<Props> = ({
-  isManaging,
-  setManaging,
-}) => (
-  <Flex w="100%" justify="center" align="center">
-    <Flex
-      border="3px solid black"
-      borderRadius="full"
-      w="100%"
-      maxW="17.5rem"
-      position="relative"
-      h="2rem"
-    >
-      <Button
-        onClick={() => setManaging(false)}
-        textTransform="uppercase"
-        px="2.55rem"
-        h="calc(100% + 6px)"
-        size="sm"
-        borderRadius="full"
-        position="absolute"
-        left="-3px"
-        top="-3px"
-        fontFamily="mono"
-        fontSize="md"
-        _hover={{ bg: 'grey4' }}
+type Props = {
+  selected: number;
+  setSelected: React.Dispatch<React.SetStateAction<number>>;
+};
+
+export const ManageSwitcher: React.FC<Props> = ({ selected, setSelected }) => {
+  const { saveToken } = useSave();
+  const bg = saveToken?.color;
+  return (
+    <Flex w="100%" justify="center" align="center">
+      <Flex
         border="3px solid black"
-        bg={isManaging ? 'none' : 'grey6'}
-        zIndex={isManaging ? 'initial' : '1'}
-        fontWeight={isManaging ? 'normal' : 'bold'}
-      >
-        Deposit
-      </Button>
-      <Button
-        onClick={() => setManaging(true)}
-        textTransform="uppercase"
-        px="2.55rem"
-        h="calc(100% + 6px)"
-        size="sm"
         borderRadius="full"
-        position="absolute"
-        right="-3px"
-        top="-3px"
-        fontFamily="mono"
-        fontSize="md"
-        border="3px solid black"
-        _hover={{ bg: 'grey4' }}
-        bg={isManaging ? 'grey6' : 'none'}
-        zIndex={isManaging ? '1' : 'initial'}
-        fontWeight={isManaging ? 'bold' : 'normal'}
+        w="100%"
+        maxW="27rem"
+        position="relative"
+        h="2rem"
       >
-        Manage
-      </Button>
+        <SwitchButton
+          index={0}
+          selected={selected}
+          select={() => setSelected(0)}
+          bg={bg}
+        >
+          Deposit
+        </SwitchButton>
+        <SwitchButton
+          index={1}
+          selected={selected}
+          select={() => setSelected(1)}
+          bg={bg}
+          left="0"
+          right="0"
+          mx="auto"
+        >
+          Claim
+        </SwitchButton>
+        <SwitchButton
+          index={2}
+          selected={selected}
+          select={() => setSelected(2)}
+          bg={bg}
+          left={undefined}
+          right="-3px"
+        >
+          Withdraw
+        </SwitchButton>
+      </Flex>
     </Flex>
-  </Flex>
-);
+  );
+};

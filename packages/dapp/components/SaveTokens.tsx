@@ -3,6 +3,7 @@ import { DepositTokens } from 'components/DepositTokens';
 import { FlavourSwitcher } from 'components/FlavourSwitcher';
 import { ManageSwitcher } from 'components/ManageSwitcher';
 import { ManageTokens } from 'components/ManageTokens';
+import { TokenBalance } from 'components/TokenBalance';
 import React, { useState } from 'react';
 
 export const SaveTokens: React.FC<StackProps> = props => {
@@ -11,6 +12,7 @@ export const SaveTokens: React.FC<StackProps> = props => {
     <VStack spacing="1rem" {...props} w="100%">
       <ManageSwitcher isManaging={isManaging} setManaging={setManaging} />
       <FlavourSwitcher />
+      <TokenBalance />
       <Collapse in={!isManaging}>
         <DepositTokens />
       </Collapse>

@@ -30,11 +30,12 @@ export const Input: React.FC<Props> = ({
     <InputGroup
       size="lg"
       border="0"
-      w="100%"
+      w={{ base: '125%', sm: '100%' }}
       maxW="45rem"
       _hover={{ border: '0' }}
       opacity={isDisabled ? '0.25' : 1}
       pointerEvents={isDisabled ? 'none' : 'initial'}
+      transform={{ base: 'scale(0.8)', sm: 'scale(1)' }}
     >
       <ChakraInput
         w="100%"
@@ -47,7 +48,7 @@ export const Input: React.FC<Props> = ({
         _hover={{ borderColor }}
         borderRadius="0.75rem"
         h="calc(3rem + 6px)"
-        fontSize="md"
+        fontSize={{ base: 'lg', sm: 'md' }}
         _placeholder={{
           fontWeight: 'bold',
           color: isDisabled ? 'black' : 'grey4',

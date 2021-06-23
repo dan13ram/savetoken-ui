@@ -7,9 +7,27 @@ import React from 'react';
 export const Header: React.FC = () => {
   const { titleSymbol } = useWeb3();
   return (
-    <Flex w="100%" justify="center" align="center" position="relative">
-      <SaveToken fontSize="3.5rem" symbol={titleSymbol} />
-      <Flex position="absolute" right="0" top="0" bottom="0">
+    <Flex
+      w="100%"
+      direction={{ base: 'column', md: 'row' }}
+      justify={{ base: 'flex-start', sm: 'center' }}
+      align="center"
+      position="relative"
+      px="1rem"
+      minH="5rem"
+    >
+      <SaveToken
+        fontSize={{ base: '2.5rem', sm: '3rem', md: '3.5rem' }}
+        symbol={titleSymbol}
+      />
+      <Flex
+        position={{ base: 'relative', md: 'absolute' }}
+        w={{ base: '100%', md: 'auto' }}
+        justify="flex-end"
+        right="0"
+        top="0"
+        bottom="0"
+      >
         <WalletIndicator />
       </Flex>
     </Flex>

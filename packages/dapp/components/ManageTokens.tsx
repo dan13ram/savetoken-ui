@@ -21,15 +21,19 @@ export const ManageTokens: React.FC<StackProps> = props => {
         How would you like to manage your savings?
       </Text>
       <ManageSwitcher selected={selected} setSelected={setSelected} />
-      <Collapse in={selected % 3 === 0}>
-        <DepositTokens />
-      </Collapse>
-      <Collapse in={selected % 3 === 1}>
-        <ClaimTokens />
-      </Collapse>
-      <Collapse in={selected % 3 === 2}>
-        <WithdrawTokens />
-      </Collapse>
+      {!isDisabled && (
+        <>
+          <Collapse in={selected % 3 === 0}>
+            <DepositTokens />
+          </Collapse>
+          <Collapse in={selected % 3 === 1}>
+            <ClaimTokens />
+          </Collapse>
+          <Collapse in={selected % 3 === 2}>
+            <WithdrawTokens />
+          </Collapse>
+        </>
+      )}
     </VStack>
   );
 };

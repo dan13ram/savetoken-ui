@@ -34,7 +34,7 @@ const SwitchButton: React.FC<ButtonProps & {
       border={isDisabled ? '3px solid #F2F2F2' : '3px solid black'}
       bg={bgColor}
       zIndex={selected ? '2' : zIndex}
-      fontWeight={selected ? 'bold' : 'normal'}
+      fontWeight={selected && !isDisabled ? 'bold' : 'normal'}
       color={isDisabled ? 'grey4' : 'black'}
       {...props}
     />

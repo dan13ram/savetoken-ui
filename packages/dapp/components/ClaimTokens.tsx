@@ -7,7 +7,7 @@ export const ClaimTokens: React.FC<StackProps> = props => {
   const { saveToken } = useSave();
   const [value, setValue] = useState('');
   return (
-    <VStack spacing="1rem" pt="1.5rem" w="100%" {...props}>
+    <VStack spacing="1.25rem" pt="1.5rem" w="100%" {...props}>
       <Text textAlign="center" fontWeight="bold">
         How much would you like to claim?
       </Text>

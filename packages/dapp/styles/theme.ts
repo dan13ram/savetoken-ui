@@ -23,11 +23,27 @@ export const theme: Theme & {
     greenGradient: string;
     blueGradient: string;
   };
+  fontSizes: Theme['fontSizes'] & {
+    ['2xs']: string;
+    ['3xs']: string;
+  };
   fonts: Theme['fonts'] & {
     grotesk: string;
   };
+  breakpoints: Theme['breakpoints'] & {
+    xs: string;
+  };
 } = {
   ...chakraTheme,
+  breakpoints: {
+    ...chakraTheme.breakpoints,
+    xs: '24rem',
+  },
+  fontSizes: {
+    ...chakraTheme.fontSizes,
+    '2xs': '0.625rem',
+    '3xs': '0.575rem',
+  },
   fonts: {
     ...chakraTheme.fonts,
     body: `'Helvetica', 'Inter', sans-serif`,

@@ -11,7 +11,7 @@ export const TokenBalance: React.FC<FlexProps> = props => {
 
   if (isDisabled) return null;
 
-  const tokenValue = '500';
+  const tokenValue = (500.4).toFixed(0);
   const tokenSymbol = symbol;
 
   const reward = 0.081;

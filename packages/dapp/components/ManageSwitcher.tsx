@@ -11,12 +11,17 @@ const SwitchButton: React.FC<ButtonProps & {
   const selected = selectedIndex % 3 === index;
 
   const zIndex = index === 1 ? '1' : 'initial';
+  const isDisabled = !bg;
+  let bgColor = selected ? bg : 'greyGradient';
+  if (isDisabled) {
+    bgColor = 'grey6';
+  }
   return (
     <Button
       onClick={select}
       textTransform="uppercase"
-      minW="9.65rem"
-      px="2.55rem"
+      w={{ base: '7.5rem', xs: '8.25rem', sm: '8.5rem', md: '9.65rem' }}
+      px={{ base: '1rem', sm: '2.55rem' }}
       h="calc(100% + 6px)"
       size="sm"
       borderRadius="full"
@@ -24,12 +29,13 @@ const SwitchButton: React.FC<ButtonProps & {
       left="-3px"
       top="-3px"
       fontFamily="mono"
-      fontSize="md"
+      fontSize={{ base: 'sm', sm: 'md' }}
       _hover={{ bg: 'grey4' }}
-      border="3px solid black"
-      bg={selected ? bg : 'greyGradient'}
+      border={isDisabled ? '3px solid #F2F2F2' : '3px solid black'}
+      bg={bgColor}
       zIndex={selected ? '2' : zIndex}
       fontWeight={selected ? 'bold' : 'normal'}
+      color={isDisabled ? 'grey4' : 'black'}
       {...props}
     />
   );
@@ -43,13 +49,19 @@ type Props = {
 export const ManageSwitcher: React.FC<Props> = ({ selected, setSelected }) => {
   const { saveToken } = useSave();
   const bg = saveToken?.color;
+  const isDisabled = !saveToken;
   return (
-    <Flex w="100%" justify="center" align="center">
+    <Flex
+      w="100%"
+      justify="center"
+      align="center"
+      pointerEvents={isDisabled ? 'none' : 'initial'}
+    >
       <Flex
-        border="3px solid black"
+        border={isDisabled ? '3px solid #F2F2F2' : '3px solid black'}
         borderRadius="full"
         w="100%"
-        maxW="27rem"
+        maxW={{ base: '21rem', xs: '22rem', sm: '23rem', md: '26.5rem' }}
         position="relative"
         h="2rem"
       >

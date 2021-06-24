@@ -60,9 +60,8 @@ export const Introduction: React.FC<StackProps> = props => {
       <Flex
         justify="center"
         align="center"
-        color="black"
+        color="grey4"
         p="1rem"
-        opacity="0.25"
         fontWeight="bold"
       >
         <Text textAlign="center">Or Simulate</Text>

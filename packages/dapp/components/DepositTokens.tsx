@@ -1,5 +1,6 @@
 import { StackProps, Text, VStack } from '@chakra-ui/react';
 import { Input } from 'components/common/Input';
+import { DepositEstimate } from 'components/DepositEstimate';
 import { useSave } from 'contexts/SaveContext';
 import { useWeb3 } from 'contexts/Web3Context';
 import React, { ChangeEvent, useState } from 'react';
@@ -10,11 +11,11 @@ export const DepositTokens: React.FC<StackProps> = props => {
   const isDisabled = !saveToken;
   const [value, setValue] = useState('');
   return (
-    <VStack spacing="1rem" pt="1.5rem" w="100%" {...props}>
+    <VStack spacing="1.25rem" pt="1.5rem" w="100%" {...props}>
       <Text
         textAlign="center"
         fontWeight="bold"
-        opacity={isDisabled ? '0.25' : 1}
+        color={isDisabled ? 'grey4' : 'black'}
         pointerEvents={isDisabled ? 'none' : 'initial'}
       >
         {`How much `}
@@ -32,8 +33,11 @@ export const DepositTokens: React.FC<StackProps> = props => {
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setValue(e.target.value)
         }
+        fontWeight="bold"
+        type="number"
         onMax={() => setValue('100')}
       />
+      {!isDisabled && <DepositEstimate value={value} />}
     </VStack>
   );
 };

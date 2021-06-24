@@ -8,7 +8,7 @@ export const WithdrawTokens: React.FC<StackProps> = props => {
   const [value, setValue] = useState('');
   const rewardSymbol = 'COMP';
   return (
-    <VStack spacing="1rem" pt="1.5rem" w="100%" {...props}>
+    <VStack spacing="1.25rem" pt="1.5rem" w="100%" {...props}>
       <Text textAlign="center" fontWeight="bold">
         {`How much `}
         <Text as="span" fontFamily="grotesk">

@@ -1,5 +1,5 @@
 import { Flex, FlexProps, SimpleGrid, Text } from '@chakra-ui/react';
-import { SaveToken } from 'components/common/SaveToken';
+import { SaveToken } from 'components/basic/SaveToken';
 import { useSave } from 'contexts/SaveContext';
 import { useWeb3 } from 'contexts/Web3Context';
 import React from 'react';

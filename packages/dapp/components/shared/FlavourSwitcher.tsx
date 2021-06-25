@@ -8,8 +8,8 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react';
-import { Button } from 'components/common/Button';
-import { FlavourItem } from 'components/FlavourItem';
+import { Button } from 'components/basic/Button';
+import { FlavourItem } from 'components/shared/FlavourItem';
 import { useSave } from 'contexts/SaveContext';
 import React from 'react';
 

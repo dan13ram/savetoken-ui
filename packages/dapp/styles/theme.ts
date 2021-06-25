@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 
 export const theme: Theme & {
   colors: Theme['colors'] & {
+    grey1: string;
     grey2: string;
     grey4: string;
     grey5: string;
@@ -52,6 +53,7 @@ export const theme: Theme & {
   },
   colors: {
     ...chakraTheme.colors,
+    grey1: '#4F4F4F',
     grey2: '#A2A2A2',
     grey4: '#BDBDBD',
     grey5: '#D6D6D6',

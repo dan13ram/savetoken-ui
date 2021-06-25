@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@chakra-ui/react';
-import { PageContainer } from 'components/common/Container';
+import { PageContainer } from 'components/basic/Container';
 import React from 'react';
 
 const FAQPage: React.FC = () => (

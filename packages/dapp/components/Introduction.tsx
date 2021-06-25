@@ -1,9 +1,9 @@
 import { Flex, StackProps, Text, VStack } from '@chakra-ui/react';
-import { Button } from 'components/common/Button';
-import { Link } from 'components/common/Link';
-import { SaveToken } from 'components/common/SaveToken';
-import { DepositTokens } from 'components/DepositTokens';
-import { FlavourSwitcher } from 'components/FlavourSwitcher';
+import { Button } from 'components/basic/Button';
+import { Link } from 'components/basic/Link';
+import { SaveToken } from 'components/basic/SaveToken';
+import { DepositTokens } from 'components/deposit/DepositTokens';
+import { FlavourSwitcher } from 'components/shared/FlavourSwitcher';
 import { useWeb3 } from 'contexts/Web3Context';
 import React from 'react';
 

@@ -1,9 +1,9 @@
 import { Collapse, StackProps, VStack } from '@chakra-ui/react';
-import { DepositTokens } from 'components/DepositTokens';
-import { FlavourSwitcher } from 'components/FlavourSwitcher';
-import { ManageTokens } from 'components/ManageTokens';
-import { SaveSwitcher } from 'components/SaveSwitcher';
-import { TokenBalance } from 'components/TokenBalance';
+import { DepositTokens } from 'components/deposit/DepositTokens';
+import { ManageTokens } from 'components/manage/ManageTokens';
+import { FlavourSwitcher } from 'components/shared/FlavourSwitcher';
+import { SaveSwitcher } from 'components/shared/SaveSwitcher';
+import { TokenBalance } from 'components/shared/TokenBalance';
 import React, { useState } from 'react';
 
 export const SaveTokens: React.FC<StackProps> = props => {

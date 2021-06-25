@@ -5,7 +5,7 @@ import {
   InputProps,
   InputRightElement,
 } from '@chakra-ui/react';
-import { Button } from 'components/common/Button';
+import { Button } from 'components/basic/Button';
 import React from 'react';
 
 type Props = {

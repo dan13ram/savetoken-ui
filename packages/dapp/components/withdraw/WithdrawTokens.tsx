@@ -1,5 +1,5 @@
 import { StackProps, Text, VStack } from '@chakra-ui/react';
-import { Input } from 'components/common/Input';
+import { Input } from 'components/basic/Input';
 import { useSave } from 'contexts/SaveContext';
 import React, { ChangeEvent, useState } from 'react';
 

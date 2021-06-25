@@ -1,8 +1,8 @@
 import { Collapse, StackProps, Text, VStack } from '@chakra-ui/react';
-import { ClaimTokens } from 'components/ClaimTokens';
-import { DepositTokens } from 'components/DepositTokens';
-import { ManageSwitcher } from 'components/ManageSwitcher';
-import { WithdrawTokens } from 'components/WithdrawTokens';
+import { ClaimTokens } from 'components/claim/ClaimTokens';
+import { DepositTokens } from 'components/deposit/DepositTokens';
+import { ManageSwitcher } from 'components/manage/ManageSwitcher';
+import { WithdrawTokens } from 'components/withdraw/WithdrawTokens';
 import { useSave } from 'contexts/SaveContext';
 import React, { useState } from 'react';
 

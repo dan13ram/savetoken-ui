@@ -12,7 +12,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { getAddress } from '@ethersproject/address';
-import { Button } from 'components/common/Button';
+import { Button } from 'components/basic/Button';
 import { useWeb3 } from 'contexts/Web3Context';
 import { CopyIcon } from 'icons/CopyIcon';
 import React from 'react';
@@ -33,7 +33,7 @@ export const WalletIndicator: React.FC = () => {
     account ? getAddress(account) : '',
   );
   return (
-    <Flex align="center" m="1rem">
+    <Flex align="center" m="1rem" justify="flex-end">
       {isConnected ? (
         <Popover isOpen={isOpen} onClose={onClose}>
           <PopoverTrigger>

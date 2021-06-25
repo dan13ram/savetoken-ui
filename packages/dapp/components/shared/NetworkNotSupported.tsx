@@ -1,5 +1,5 @@
 import { Button, Text, VStack } from '@chakra-ui/react';
-import { PageContainer } from 'components/common/Container';
+import { PageContainer } from 'components/basic/Container';
 import { useWeb3 } from 'contexts/Web3Context';
 import React from 'react';
 import { SUPPORTED_NETWORKS } from 'utils/constants';

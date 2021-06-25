@@ -1,5 +1,5 @@
-import { Collapse } from '@chakra-ui/react';
-import { PageContainer } from 'components/common/Container';
+import { Collapse, Flex, Spinner } from '@chakra-ui/react';
+import { PageContainer } from 'components/basic/Container';
 import { Introduction } from 'components/Introduction';
 import { SaveTokens } from 'components/SaveTokens';
 import { SaveProvider } from 'contexts/SaveContext';
@@ -33,7 +33,7 @@ const HomePage: React.FC<Props> = ({ saveTokenFlavors }) => {
   return (
     <PageContainer>
       <SaveProvider saveTokenFlavors={saveTokenFlavors as SaveTokenFlavors}>
-        {initialLoadDone && (
+        {initialLoadDone ? (
           <>
             <Collapse in={!isConnected} animateOpacity>
               <Introduction />
@@ -42,6 +42,10 @@ const HomePage: React.FC<Props> = ({ saveTokenFlavors }) => {
               <SaveTokens />
             </Collapse>
           </>
+        ) : (
+          <Flex w="100%" justify="center" align="center" pt="2rem">
+            <Spinner size="xl" thickness="3px" />
+          </Flex>
         )}
       </SaveProvider>
     </PageContainer>

@@ -1,5 +1,5 @@
 import { ButtonProps, Flex } from '@chakra-ui/react';
-import { Button } from 'components/common/Button';
+import { Button } from 'components/basic/Button';
 import { useSave } from 'contexts/SaveContext';
 import React from 'react';
 

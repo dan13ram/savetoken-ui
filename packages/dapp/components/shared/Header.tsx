@@ -1,5 +1,6 @@
-import { Flex } from '@chakra-ui/react';
-import { SaveToken } from 'components/common/SaveToken';
+import { Flex, VStack } from '@chakra-ui/react';
+import { SaveToken } from 'components/basic/SaveToken';
+import { TransactionStatus } from 'components/shared/TransactionStatus';
 import { WalletIndicator } from 'components/shared/WalletIndicator';
 import { useWeb3 } from 'contexts/Web3Context';
 import React from 'react';
@@ -20,16 +21,18 @@ export const Header: React.FC = () => {
         fontSize={{ base: '2.5rem', sm: '3rem', md: '3.5rem' }}
         symbol={titleSymbol}
       />
-      <Flex
+      <VStack
         position={{ base: 'relative', md: 'absolute' }}
         w={{ base: '100%', md: 'auto' }}
-        justify="flex-end"
         right="0"
         top="0"
         bottom="0"
+        spacing="2rem"
+        align="flex-end"
       >
         <WalletIndicator />
-      </Flex>
+        <TransactionStatus />
+      </VStack>
     </Flex>
   );
 };

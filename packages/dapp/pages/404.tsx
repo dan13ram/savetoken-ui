@@ -1,6 +1,6 @@
 import { Button, Text } from '@chakra-ui/react';
-import { PageContainer } from 'components/common/Container';
-import { Link } from 'components/common/Link';
+import { PageContainer } from 'components/basic/Container';
+import { Link } from 'components/basic/Link';
 import React from 'react';
 
 const NotFoundPage: React.FC = () => (

@@ -42,18 +42,18 @@ export const ClaimTokens: React.FC<StackProps> = props => {
       </Text>
       <VStack spacing="1.5rem" pt="0.75rem" w="100%" color="grey4">
         <Text fontWeight="bold">Details on claiming:</Text>
-        <UnorderedList spacing="1rem">
+        <UnorderedList spacing="1rem" pl="1.5rem" pr="0.5rem">
           <ListItem>
             Below there is space to detail any of the necessary steps, in order
-            to make a claim on any of the specific savings pairings.
+            to make a claim on any of the specific saver flavours.
           </ListItem>
           <ListItem>
             Below there is space to detail any of the necessary steps, in order
-            to make a claim on any of the specific savings pairings.
+            to make a claim on any of the specific saver flavours.
           </ListItem>
           <ListItem>
             Below there is space to detail any of the necessary steps, in order
-            to make a claim on any of the specific savings pairings.
+            to make a claim on any of the specific saver flavours.
           </ListItem>
         </UnorderedList>
       </VStack>

@@ -1,16 +1,15 @@
 import { SaveTokenDetailsFragment } from 'graphql/autogen/types';
 import { getSaveTokens } from 'graphql/getSaveTokens';
-
-import { SAVE_TOKENS_FLAVOURS } from './constants';
-import { MONTHS } from './dateHelpers';
-import { logError } from './helpers';
+import { SAVE_TOKENS_FLAVOURS } from 'utils/constants';
+import { MONTHS } from 'utils/dateHelpers';
+import { logError } from 'utils/helpers';
 import {
   AssetType,
   InsuranceType,
   SaveToken,
   SupportedSaveToken,
   Token,
-} from './types';
+} from 'utils/types';
 
 const getAssetType = (assetTypeName: string): AssetType => {
   switch (assetTypeName) {

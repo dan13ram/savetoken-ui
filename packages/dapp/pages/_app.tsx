@@ -2,7 +2,7 @@ import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
 import { Layout } from 'components/shared/Layout';
 import { Web3Provider } from 'contexts/Web3Context';
-import type { AppProps } from 'next/app';
+import { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { globalStyles, theme } from 'styles/theme';

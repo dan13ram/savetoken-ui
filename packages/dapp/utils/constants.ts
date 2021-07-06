@@ -16,6 +16,33 @@ export const SAVE_TOKENS_FLAVOURS = {
   },
 };
 
+export const NETWORK_CURRENCIES = {
+  1: {
+    name: 'Ethereum',
+    symbol: 'ETH',
+  },
+  4: {
+    name: 'Ethereum',
+    symbol: 'ETH',
+  },
+  42: {
+    name: 'Ethereum',
+    symbol: 'ETH',
+  },
+  100: {
+    name: 'xDai',
+    symbol: 'xDai',
+  },
+  137: {
+    name: 'MATIC',
+    symbol: 'MATIC',
+  },
+  80001: {
+    name: 'MATIC',
+    symbol: 'MATIC',
+  },
+};
+
 export const RPC_URLS = {
   1: `https://mainnet.infura.io/v3/${INFURA_ID}`,
   4: `https://rinkeby.infura.io/v3/${INFURA_ID}`,

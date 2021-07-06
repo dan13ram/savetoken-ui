@@ -1,26 +1,23 @@
 import { Button, Text, VStack } from '@chakra-ui/react';
 import { PageContainer } from 'components/basic/Container';
 import { useWeb3 } from 'contexts/Web3Context';
+import { useRenderChain } from 'hooks/useRenderChain';
 import React from 'react';
 import { SUPPORTED_NETWORKS } from 'utils/constants';
-import { getNetworkLabel } from 'utils/helpers';
 
 export const NetworkNotSupported: React.FC = () => {
   const { disconnect, isGnosisSafe } = useWeb3();
+  const renderChain = useRenderChain();
   return (
     <PageContainer align="center">
       <Text textAlign="center" fontSize="lg" fontWeight="bold">
         Current network is not supported!
       </Text>
-      <VStack>
+      <VStack pb="5rem">
         <Text textAlign="center">
           Please switch your wallet to one of the following networks:
         </Text>
-        {SUPPORTED_NETWORKS.map(chainId => (
-          <Text textAlign="center" key={chainId.toString()}>{`${getNetworkLabel(
-            chainId,
-          )} (${chainId})`}</Text>
-        ))}
+        {SUPPORTED_NETWORKS.map(chainId => renderChain(chainId))}
       </VStack>
       {!isGnosisSafe && (
         <Button

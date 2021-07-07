@@ -11,7 +11,7 @@ export const DepositRateEstimates: React.FC = () => {
 
   return (
     <Flex
-      pt="calc(3.5rem - 6px)"
+      pt="calc(4rem - 6px)"
       w="100%"
       direction="column"
       border={isDisabled ? '3px solid #F2F2F2' : '3px solid black'}
@@ -27,7 +27,7 @@ export const DepositRateEstimates: React.FC = () => {
         border={isDisabled ? '3px solid #F2F2F2' : '3px solid black'}
         bg="grey6"
         borderRadius="1rem"
-        h={{ base: '3rem', sm: '3.5rem' }}
+        h={{ base: '3.5rem', sm: '4rem' }}
         fontWeight="bold"
         fontSize={{ base: 'xs', md: 'sm' }}
         position="absolute"
@@ -38,7 +38,7 @@ export const DepositRateEstimates: React.FC = () => {
           columns={2}
           gap={0}
           w="100%"
-          h={{ base: '4rem', sm: '5rem' }}
+          h={{ base: '4.5rem', sm: '5.5rem' }}
           fontWeight="bold"
           fontFamily="mono"
         >
@@ -47,15 +47,31 @@ export const DepositRateEstimates: React.FC = () => {
               color={isDisabled ? 'grey4' : 'black'}
               textTransform="uppercase"
             >
-              Estimates
+              Insurance Estimates
             </Text>
           </Flex>
           <Flex justify="center" align="center">
             <Text
               color={isDisabled ? 'grey4' : 'black'}
               textTransform="uppercase"
+              textAlign="center"
+              position="relative"
             >
-              Current
+              <Text as="span" textAlign="center">
+                Current Interest Rates
+              </Text>
+              <Text
+                as="span"
+                fontSize={{ base: '4xs', md: '3xs' }}
+                textAlign="center"
+                position="absolute"
+                top="95%"
+                left="50%"
+                transform="translateX(-50%)"
+                fontWeight="normal"
+              >
+                [VARIABLE]
+              </Text>
             </Text>
           </Flex>
         </SimpleGrid>

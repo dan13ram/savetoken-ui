@@ -27,6 +27,7 @@ export const theme: Theme & {
   fontSizes: Theme['fontSizes'] & {
     ['2xs']: string;
     ['3xs']: string;
+    ['4xs']: string;
   };
   fonts: Theme['fonts'] & {
     grotesk: string;
@@ -44,6 +45,7 @@ export const theme: Theme & {
     ...chakraTheme.fontSizes,
     '2xs': '0.625rem',
     '3xs': '0.575rem',
+    '4xs': '0.5rem',
   },
   fonts: {
     ...chakraTheme.fonts,

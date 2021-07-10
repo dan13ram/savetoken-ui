@@ -17,6 +17,7 @@ export enum InsuranceType {
 
 export type SaveToken = {
   address: string;
+  chainId: number;
   label: string;
   color: string;
   expiry: number;

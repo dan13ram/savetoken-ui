@@ -20,13 +20,16 @@ const SaveContext = React.createContext<SaveContextType>({
 export const SaveProvider: React.FC<{
   saveTokenFlavors: SaveTokenFlavors;
 }> = ({ children, saveTokenFlavors: saveTokenFlavorsForChain }) => {
-  const { account, chainId, setTitleSymbol } = useWeb3();
+  const { chainId, setTitleSymbol } = useWeb3();
 
   const [saveTokenFlavors, setSaveTokenFlavors] = useState<SaveToken[]>([]);
   const [saveToken, setSaveToken] = useState<SaveToken | undefined>();
 
   useEffect(() => {
-    setSaveToken(undefined);
+    setSaveToken(save => (save?.chainId === chainId ? save : undefined));
+  }, [chainId]);
+
+  useEffect(() => {
     if (saveTokenFlavorsForChain) {
       setSaveTokenFlavors(
         chainId
@@ -36,7 +39,7 @@ export const SaveProvider: React.FC<{
     } else {
       setSaveTokenFlavors([]);
     }
-  }, [account, chainId, saveTokenFlavorsForChain]);
+  }, [chainId, saveTokenFlavorsForChain]);
 
   const symbol = useMemo(
     () => saveToken?.underlyingToken.symbol || DEFAULT_TOKEN_SYMBOL,

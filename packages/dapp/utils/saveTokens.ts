@@ -32,6 +32,7 @@ const getInsuranceType = (insuranceTypeName: string): InsuranceType => {
 };
 
 const parseSaveToken = (
+  chainId: number,
   saveToken: SaveTokenDetailsFragment,
   supportedSaveToken: SupportedSaveToken,
 ): SaveToken => {
@@ -63,6 +64,7 @@ const parseSaveToken = (
   const label = `${symbol} x ${nameParts[1]} x ${nameParts[2]}`;
 
   return {
+    chainId,
     address,
     label,
     expiry: expiry.getTime(),
@@ -89,7 +91,7 @@ export const getSaveTokenFlavors = async (
       const supportedSaveToken = supportedSaveTokens[saveToken.address];
       if (supportedSaveToken) {
         try {
-          return parseSaveToken(saveToken, supportedSaveToken);
+          return parseSaveToken(chainId, saveToken, supportedSaveToken);
         } catch (error) {
           logError(error);
           return undefined;

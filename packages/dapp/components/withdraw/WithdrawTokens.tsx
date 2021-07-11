@@ -8,12 +8,8 @@ export const WithdrawTokens: React.FC<StackProps> = props => {
   const {
     tokenSymbol,
     rewardBalance,
-    tokenBalanceInUSD,
-    saveToken: {
-      color,
-      rewardToken,
-      underlyingToken: { decimals },
-    },
+    balanceInUSD,
+    saveToken: { color, rewardToken },
   } = useSave();
   const reward = Number(
     utils.formatUnits(rewardBalance, rewardToken?.decimals),
@@ -21,8 +17,7 @@ export const WithdrawTokens: React.FC<StackProps> = props => {
   const rewardValue = reward.toFixed(2);
   const rewardSymbol = rewardToken?.symbol;
 
-  const usd = Number(utils.formatUnits(tokenBalanceInUSD, decimals));
-  const [usdValue, usdDecimals] = usd.toFixed(2).split('.');
+  const [usdValue, usdDecimals] = balanceInUSD.toFixed(2).split('.');
 
   const [value, setValue] = useState('');
   return (

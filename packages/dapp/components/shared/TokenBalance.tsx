@@ -10,7 +10,7 @@ export const TokenBalance: React.FC<FlexProps> = props => {
   const {
     tokenBalance,
     rewardBalance,
-    tokenBalanceInUSD,
+    balanceInUSD,
     tokenSymbol,
     saveToken,
   } = useSave();
@@ -32,8 +32,7 @@ export const TokenBalance: React.FC<FlexProps> = props => {
     reward < 1 ? `.${reward.toFixed(2).split('.')[1]}` : reward.toFixed(2);
   const rewardSymbol = rewardToken?.symbol;
 
-  const usd = Number(utils.formatUnits(tokenBalanceInUSD, decimals));
-  const [usdValue, usdDecimals] = usd.toFixed(2).split('.');
+  const [usdValue, usdDecimals] = balanceInUSD.toFixed(2).split('.');
 
   return (
     <Flex pt="1.5rem" w="100%" justify="center" align="center" {...props}>

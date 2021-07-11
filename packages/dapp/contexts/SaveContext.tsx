@@ -12,8 +12,8 @@ export type SaveContextType = {
   tokenSymbol: string;
   tokenBalance: BigNumber;
   setTokenBalance: React.Dispatch<React.SetStateAction<BigNumber>>;
-  tokenBalanceInUSD: BigNumber;
   rewardBalance: BigNumber;
+  balanceInUSD: number;
 };
 
 const SaveContext = React.createContext<SaveContextType>({
@@ -23,8 +23,8 @@ const SaveContext = React.createContext<SaveContextType>({
   tokenSymbol: 'DAI',
   tokenBalance: BigNumber.from(0),
   setTokenBalance: () => undefined,
-  tokenBalanceInUSD: BigNumber.from(0),
   rewardBalance: BigNumber.from(0),
+  balanceInUSD: 0,
 });
 
 export const SaveProvider: React.FC<{
@@ -63,9 +63,9 @@ export const SaveProvider: React.FC<{
   const {
     tokenBalance,
     setTokenBalance,
-    tokenBalanceInUSD,
+    balanceInUSD,
     rewardBalance,
-  } = useUserBalance(tokenSymbol);
+  } = useUserBalance(saveToken);
 
   return (
     <SaveContext.Provider
@@ -76,7 +76,7 @@ export const SaveProvider: React.FC<{
         tokenSymbol,
         tokenBalance,
         setTokenBalance,
-        tokenBalanceInUSD,
+        balanceInUSD,
         rewardBalance,
       }}
     >

@@ -95,4 +95,5 @@ export const COINGECKO_TOKEN_ID = {
   DAI: 'dai',
   USDT: 'tether',
   USDC: 'usd-coin',
+  COMP: 'compound-governance-token',
 };

@@ -18,9 +18,8 @@ export const DepositRateEstimates: React.FC = () => {
   const { value } = useDeposit();
   const isDisabled = value.lte(0);
 
-  const insuranceNum = Number(
-    utils.formatUnits(value.mul(insuranceRate).div(100), decimals),
-  );
+  const insuranceNum =
+    (Number(utils.formatUnits(value, decimals)) * insuranceRate) / 100;
   const insuranceValue = insuranceNum.toFixed(1);
 
   return (

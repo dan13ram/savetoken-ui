@@ -21,31 +21,15 @@ export const DepositYieldEstimates: React.FC = () => {
   const { value } = useDeposit();
   const isDisabled = value.lte(0);
 
-  const yieldNum = Number(
-    utils.formatUnits(value.mul(yieldRate).div(100), decimals),
-  );
+  const valueNum = Number(utils.formatUnits(value, decimals));
+
+  const yieldNum = (valueNum * yieldRate) / 100;
   const yieldValue = yieldNum.toFixed(1);
 
   const usdRate = useUSDRate(tokenSymbol);
 
-  const insuredInUSD = Number(
-    utils.formatUnits(
-      value
-        .mul(usdRate)
-        .mul(100 - insuranceRate)
-        .div(100),
-      decimals,
-    ),
-  );
-  const lossInUSD = Number(
-    utils.formatUnits(
-      value
-        .mul(usdRate)
-        .mul(insuranceRate)
-        .div(100),
-      decimals,
-    ),
-  );
+  const insuredInUSD = (valueNum * usdRate * (100 - insuranceRate)) / 100;
+  const lossInUSD = (valueNum * usdRate * insuranceRate) / 100;
 
   const dateString = getDateInNumbers(new Date(expiry));
 
@@ -136,7 +120,7 @@ export const DepositYieldEstimates: React.FC = () => {
           </Flex>
           <Flex direction="column" justify="center" align="center">
             <Text color={isDisabled ? 'grey4' : 'black'}>
-              Yield <br />
+              Insurance <br />
               Term Ends <Tooltip title="Insert text here" />
             </Text>
           </Flex>

@@ -2,24 +2,37 @@ import { Flex, FlexProps, SimpleGrid, Text } from '@chakra-ui/react';
 import { SaveToken } from 'components/basic/SaveToken';
 import { useSave } from 'contexts/SaveContext';
 import { useWeb3 } from 'contexts/Web3Context';
+import { utils } from 'ethers';
 import React from 'react';
 
 export const TokenBalance: React.FC<FlexProps> = props => {
   const { isConnected } = useWeb3();
-  const { symbol, saveToken } = useSave();
+  const {
+    tokenBalance,
+    rewardBalance,
+    tokenBalanceInUSD,
+    tokenSymbol,
+    saveToken,
+  } = useSave();
   const isDisabled = !saveToken || !isConnected;
 
   if (isDisabled) return null;
+  const {
+    underlyingToken: { decimals },
+    rewardToken,
+  } = saveToken;
 
-  const tokenValue = (500.4).toFixed(0);
-  const tokenSymbol = symbol;
+  const balance = Number(utils.formatUnits(tokenBalance, decimals));
+  const balanceValue = balance.toFixed(0);
 
-  const reward = 0.081;
+  const reward = Number(
+    utils.formatUnits(rewardBalance, rewardToken?.decimals),
+  );
   const rewardValue =
     reward < 1 ? `.${reward.toFixed(2).split('.')[1]}` : reward.toFixed(2);
-  const rewardSymbol = 'COMP';
+  const rewardSymbol = rewardToken?.symbol;
 
-  const usd = 500.371;
+  const usd = Number(utils.formatUnits(tokenBalanceInUSD, decimals));
   const [usdValue, usdDecimals] = usd.toFixed(2).split('.');
 
   return (
@@ -53,7 +66,7 @@ export const TokenBalance: React.FC<FlexProps> = props => {
           </Text>
         </Flex>
         <SimpleGrid
-          columns={3}
+          columns={rewardSymbol ? 3 : 2}
           gap={0}
           h={{ base: '4rem', sm: '5rem' }}
           fontWeight="bold"
@@ -65,7 +78,7 @@ export const TokenBalance: React.FC<FlexProps> = props => {
               transform={{ base: 'scale(0.8)', sm: 'scale(1)' }}
             >
               <Text fontSize="3xl" fontFamily="mono" lineHeight="80%">
-                {tokenValue}
+                {balanceValue}
               </Text>
               <Text
                 ml="0.25rem"
@@ -77,30 +90,27 @@ export const TokenBalance: React.FC<FlexProps> = props => {
               </Text>
             </Flex>
           </Flex>
-          <Flex
-            justify="center"
-            align="center"
-            borderLeft="3px solid black"
-            borderRight="3px solid black"
-          >
-            <Flex
-              align="flex-end"
-              transform={{ base: 'scale(0.8)', sm: 'scale(1)' }}
-            >
-              <Text fontSize="3xl" fontFamily="mono" lineHeight="80%">
-                {rewardValue}
-              </Text>
-              <Text
-                ml="0.25rem"
-                fontSize="lg"
-                fontFamily="grotesk"
-                lineHeight="80%"
+          {rewardSymbol && (
+            <Flex justify="center" align="center" borderLeft="3px solid black">
+              <Flex
+                align="flex-end"
+                transform={{ base: 'scale(0.8)', sm: 'scale(1)' }}
               >
-                {rewardSymbol}
-              </Text>
+                <Text fontSize="3xl" fontFamily="mono" lineHeight="80%">
+                  {rewardValue}
+                </Text>
+                <Text
+                  ml="0.25rem"
+                  fontSize="lg"
+                  fontFamily="grotesk"
+                  lineHeight="80%"
+                >
+                  {rewardSymbol}
+                </Text>
+              </Flex>
             </Flex>
-          </Flex>
-          <Flex justify="center" align="center">
+          )}
+          <Flex justify="center" align="center" borderLeft="3px solid black">
             <Flex
               align="flex-end"
               transform={{ base: 'scale(0.8)', sm: 'scale(1)' }}

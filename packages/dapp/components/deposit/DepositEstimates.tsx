@@ -1,12 +1,12 @@
 import { Flex, StackProps, Text, VStack } from '@chakra-ui/react';
-import { DepositInsuranceEstimates } from 'components/deposit/DepositInsuranceEstimates';
 import { DepositRateEstimates } from 'components/deposit/DepositRateEstimates';
+import { DepositYieldEstimates } from 'components/deposit/DepositYieldEstimates';
 import { useDeposit } from 'contexts/DepositContext';
 import { useSave } from 'contexts/SaveContext';
 import React from 'react';
 
 export const DepositEstimates: React.FC<StackProps> = ({ ...props }) => {
-  const { symbol } = useSave();
+  const { tokenSymbol } = useSave();
   const { value, valueInput } = useDeposit();
   const isDisabled = value.lte(0);
 
@@ -44,12 +44,12 @@ export const DepositEstimates: React.FC<StackProps> = ({ ...props }) => {
               fontFamily="grotesk"
               lineHeight="80%"
             >
-              {symbol}
+              {tokenSymbol}
             </Text>
           </Flex>
         </Flex>
       </Flex>
-      <DepositInsuranceEstimates />
+      <DepositYieldEstimates />
       <DepositRateEstimates />
       <Text color="grey4" fontSize="xs" fontWeight="bold" fontFamily="body">
         [Uninsured Interest Rate] - [Estimated Premium Rate Insurance] =

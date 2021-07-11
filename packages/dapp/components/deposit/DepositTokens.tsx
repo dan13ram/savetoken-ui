@@ -9,8 +9,14 @@ import React, { ChangeEvent, useCallback } from 'react';
 
 const DepositTokensInner: React.FC<StackProps> = props => {
   const { isConnected } = useWeb3();
-  const { symbol, saveToken } = useSave();
-  const { valueInput, setValueInput, setValue } = useDeposit();
+  const { tokenSymbol, saveToken } = useSave();
+  const {
+    valueInput,
+    setValueInput,
+    setValue,
+    onDeposit,
+    isDepositing,
+  } = useDeposit();
   const isDisabled = !saveToken;
   const decimals = saveToken?.underlyingToken.decimals || 18;
   const setDepositValue = useCallback(
@@ -30,12 +36,12 @@ const DepositTokensInner: React.FC<StackProps> = props => {
       >
         {`How much `}
         <Text as="span" fontFamily="grotesk">
-          {symbol}
+          {tokenSymbol}
         </Text>
         {` would you like to save?`}
       </Text>
       <Input
-        placeholder={`${symbol} Deposit Amount`}
+        placeholder={`${tokenSymbol} Deposit Amount`}
         buttonText={isConnected ? 'Deposit' : 'Simulate'}
         isDisabled={!saveToken}
         buttonColor={isConnected ? saveToken?.color : 'greyGradient'}
@@ -46,6 +52,8 @@ const DepositTokensInner: React.FC<StackProps> = props => {
         fontWeight="bold"
         type="number"
         onMax={() => setDepositValue('100')}
+        onButtonClick={onDeposit}
+        isButtonLoading={isDepositing}
       />
       {!isDisabled && <DepositEstimates />}
     </VStack>

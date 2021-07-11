@@ -79,7 +79,7 @@ export const FlavourSwitcher: React.FC = () => {
             </Grid>
             {saveTokenFlavors.map(saveTokenFlavor => (
               <FlavourItem
-                key={saveTokenFlavor.address}
+                key={saveTokenFlavor.label}
                 label={saveTokenFlavor.label}
                 expiry={new Date(saveTokenFlavor.expiry)}
                 rate={saveTokenFlavor.yieldRate}

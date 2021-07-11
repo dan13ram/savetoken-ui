@@ -1,4 +1,6 @@
 import { useWeb3 } from 'contexts/Web3Context';
+import { BigNumber } from 'ethers';
+import { useUserBalance } from 'hooks/useUserBalance';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { DEFAULT_TOKEN_SYMBOL, SIMULATION_NETWORK } from 'utils/constants';
 import { SaveToken, SaveTokenFlavors } from 'utils/types';
@@ -7,14 +9,22 @@ export type SaveContextType = {
   saveTokenFlavors: SaveToken[];
   saveToken: SaveToken | undefined;
   setSaveToken: React.Dispatch<React.SetStateAction<SaveToken | undefined>>;
-  symbol: string;
+  tokenSymbol: string;
+  tokenBalance: BigNumber;
+  setTokenBalance: React.Dispatch<React.SetStateAction<BigNumber>>;
+  tokenBalanceInUSD: BigNumber;
+  rewardBalance: BigNumber;
 };
 
 const SaveContext = React.createContext<SaveContextType>({
   saveTokenFlavors: [],
   saveToken: undefined,
   setSaveToken: () => undefined,
-  symbol: 'DAI',
+  tokenSymbol: 'DAI',
+  tokenBalance: BigNumber.from(0),
+  setTokenBalance: () => undefined,
+  tokenBalanceInUSD: BigNumber.from(0),
+  rewardBalance: BigNumber.from(0),
 });
 
 export const SaveProvider: React.FC<{
@@ -41,18 +51,34 @@ export const SaveProvider: React.FC<{
     }
   }, [chainId, saveTokenFlavorsForChain]);
 
-  const symbol = useMemo(
+  const tokenSymbol = useMemo(
     () => saveToken?.underlyingToken.symbol || DEFAULT_TOKEN_SYMBOL,
     [saveToken],
   );
 
   useEffect(() => {
-    setTitleSymbol(symbol);
-  }, [symbol, setTitleSymbol]);
+    setTitleSymbol(tokenSymbol);
+  }, [tokenSymbol, setTitleSymbol]);
+
+  const {
+    tokenBalance,
+    setTokenBalance,
+    tokenBalanceInUSD,
+    rewardBalance,
+  } = useUserBalance(tokenSymbol);
 
   return (
     <SaveContext.Provider
-      value={{ saveTokenFlavors, saveToken, setSaveToken, symbol }}
+      value={{
+        saveTokenFlavors,
+        saveToken,
+        setSaveToken,
+        tokenSymbol,
+        tokenBalance,
+        setTokenBalance,
+        tokenBalanceInUSD,
+        rewardBalance,
+      }}
     >
       {children}
     </SaveContext.Provider>

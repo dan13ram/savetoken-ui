@@ -11,6 +11,7 @@ export const Tooltip: React.FC<IconProps & { title: string }> = ({
       color="grey4"
       _hover={{ color: 'grey2' }}
       boxSize="0.625rem"
+      cursor="pointer"
       {...props}
     />
   </ChakraTooltip>

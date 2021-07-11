@@ -21,6 +21,21 @@ const getAssetType = (assetTypeName: string): AssetType => {
   }
 };
 
+const getRewardToken = (assetTypeName: string): Token | null => {
+  switch (assetTypeName) {
+    case 'Compound':
+      return {
+        address: '0xc00e94cb662c3520282e6f5717214004a7f26888',
+        symbol: 'COMP',
+        name: 'Compound',
+        decimals: 18,
+      };
+    case 'Aave':
+    default:
+      return null;
+  }
+};
+
 const getInsuranceType = (insuranceTypeName: string): InsuranceType => {
   switch (insuranceTypeName) {
     case 'Opyn':
@@ -54,6 +69,7 @@ const parseSaveToken = (
   }
 
   const assetType = getAssetType(nameParts[1]);
+  const rewardToken = getRewardToken(nameParts[1]);
   const insuranceType = getInsuranceType(nameParts[2]);
   const expiry = new Date(
     Number.parseInt(nameParts[6], 10),
@@ -62,6 +78,8 @@ const parseSaveToken = (
   );
 
   const label = `${symbol} x ${nameParts[1]} x ${nameParts[2]}`;
+  const assetRate = 5;
+  const insuranceRate = 3;
 
   return {
     chainId,
@@ -74,9 +92,10 @@ const parseSaveToken = (
     insuranceToken: insuranceToken as Token,
     assetToken: assetToken as Token,
     token: token as Token,
-    assetRate: 10.5,
-    insuranceRate: 3.1,
-    yieldRate: 7.4,
+    rewardToken,
+    assetRate,
+    insuranceRate,
+    yieldRate: assetRate - insuranceRate,
     ...supportedSaveToken,
   };
 };
@@ -86,7 +105,7 @@ export const getSaveTokenFlavors = async (
 ): Promise<SaveToken[]> => {
   const saveTokens = await getSaveTokens(chainId);
   const supportedSaveTokens = SAVE_TOKENS_FLAVOURS[chainId];
-  return saveTokens
+  const parsedSaveTokens = saveTokens
     .map(saveToken => {
       const supportedSaveToken = supportedSaveTokens[saveToken.address];
       if (supportedSaveToken) {
@@ -94,12 +113,24 @@ export const getSaveTokenFlavors = async (
           return parseSaveToken(chainId, saveToken, supportedSaveToken);
         } catch (error) {
           logError(error);
-          return undefined;
+          return null;
         }
       } else {
-        return undefined;
+        return null;
       }
     })
     .filter(saveToken => !!saveToken)
     .sort((a, b) => (a.yieldRate > b.yieldRate ? 1 : -1));
+
+  // TODO: remove this after testing
+  return [
+    ...parsedSaveTokens,
+    {
+      ...parsedSaveTokens[0],
+      label: `DAI x Compound x Opyn`,
+      color: 'yellowPinkGradient',
+      assetType: AssetType.COMPOUND,
+      rewardToken: getRewardToken('Compound'),
+    },
+  ];
 };

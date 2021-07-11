@@ -2,12 +2,26 @@ import { Flex, SimpleGrid, Text } from '@chakra-ui/react';
 import { Tooltip } from 'components/basic/Tooltip';
 import { useDeposit } from 'contexts/DepositContext';
 import { useSave } from 'contexts/SaveContext';
+import { utils } from 'ethers';
 import React from 'react';
 
 export const DepositRateEstimates: React.FC = () => {
-  const { symbol } = useSave();
+  const {
+    tokenSymbol,
+    saveToken: {
+      assetRate,
+      yieldRate,
+      insuranceRate,
+      underlyingToken: { decimals },
+    },
+  } = useSave();
   const { value } = useDeposit();
   const isDisabled = value.lte(0);
+
+  const insuranceNum = Number(
+    utils.formatUnits(value.mul(insuranceRate).div(100), decimals),
+  );
+  const insuranceValue = insuranceNum.toFixed(1);
 
   return (
     <Flex
@@ -82,8 +96,24 @@ export const DepositRateEstimates: React.FC = () => {
         fontWeight="bold"
         mt={{ base: '-1rem', sm: '-0.5rem' }}
       >
-        <Flex justify="center" align="center" pt="1rem">
-          <SimpleGrid columns={2} gap="1rem" p="1rem" fontWeight="bold">
+        <Flex
+          justify="center"
+          align="center"
+          px={{ base: '0.5rem', md: '1rem' }}
+          pt="1rem"
+          pb="0.5rem"
+          w="100%"
+          h="100%"
+        >
+          <SimpleGrid
+            w="100%"
+            h="100%"
+            columns={2}
+            gap={{ base: '0.25rem', md: '0.5rem' }}
+            p={{ base: '0.25rem', sm: '0.5rem', md: '1rem' }}
+            fontWeight="bold"
+            overflowX="auto"
+          >
             <Flex
               justify="flex-start"
               align="center"
@@ -94,13 +124,15 @@ export const DepositRateEstimates: React.FC = () => {
                 Premium <Tooltip title="Insert text here" />
               </Text>
             </Flex>
-            <Flex justify="flex-start" align="center" pl="0.5rem">
+            <Flex justify="flex-start" align="center" w="100%">
               <Flex
+                w="100%"
                 align="flex-end"
                 transform={{ base: 'scale(0.8)', sm: 'scale(1)' }}
+                px="0.5rem"
               >
                 <Text fontSize="3xl" fontFamily="body" lineHeight="80%">
-                  20
+                  {insuranceValue}
                 </Text>
                 <Text
                   ml="0.25rem"
@@ -108,7 +140,7 @@ export const DepositRateEstimates: React.FC = () => {
                   fontFamily="grotesk"
                   lineHeight="80%"
                 >
-                  {symbol}
+                  {tokenSymbol}
                 </Text>
               </Flex>
             </Flex>
@@ -122,13 +154,15 @@ export const DepositRateEstimates: React.FC = () => {
                 Rate <Tooltip title="Insert text here" />
               </Text>
             </Flex>
-            <Flex justify="flex-start" align="center" pl="0.5rem">
+            <Flex justify="flex-start" align="center" w="100%">
               <Flex
+                w="100%"
                 align="flex-end"
                 transform={{ base: 'scale(0.8)', sm: 'scale(1)' }}
+                px="0.5rem"
               >
                 <Text fontSize="3xl" fontFamily="body" lineHeight="80%">
-                  2
+                  {insuranceRate.toFixed(1)}
                 </Text>
                 <Text
                   ml="0.25rem"
@@ -144,11 +178,23 @@ export const DepositRateEstimates: React.FC = () => {
         </Flex>
         <Flex
           justify="center"
+          w="100%"
+          h="100%"
           align="center"
           borderLeft={isDisabled ? '3px solid #F2F2F2' : '3px solid black'}
+          px={{ base: '0.5rem', md: '1rem' }}
           pt="1rem"
+          pb="0.5rem"
         >
-          <SimpleGrid columns={2} gap="1rem" p="1rem" fontWeight="bold">
+          <SimpleGrid
+            w="100%"
+            h="100%"
+            columns={2}
+            gap={{ base: '0.25rem', md: '0.5rem' }}
+            p={{ base: '0.25rem', sm: '0.5rem', md: '1rem' }}
+            fontWeight="bold"
+            overflowX="auto"
+          >
             <Flex
               justify="flex-start"
               align="center"
@@ -159,13 +205,15 @@ export const DepositRateEstimates: React.FC = () => {
                 Interest Rate <Tooltip title="Insert text here" />
               </Text>
             </Flex>
-            <Flex justify="flex-start" align="center" pl="0.5rem">
+            <Flex justify="flex-start" align="center" w="100%">
               <Flex
+                w="100%"
                 align="flex-end"
                 transform={{ base: 'scale(0.8)', sm: 'scale(1)' }}
+                px="0.5rem"
               >
                 <Text fontSize="3xl" fontFamily="body" lineHeight="80%">
-                  20
+                  {assetRate.toFixed(1)}
                 </Text>
                 <Text
                   ml="0.25rem"
@@ -173,7 +221,10 @@ export const DepositRateEstimates: React.FC = () => {
                   fontFamily="grotesk"
                   lineHeight="80%"
                 >
-                  {symbol}
+                  %
+                </Text>
+                <Text ml="0.25rem" as="span" fontSize="2xs" lineHeight="80%">
+                  APY
                 </Text>
               </Flex>
             </Flex>
@@ -187,13 +238,15 @@ export const DepositRateEstimates: React.FC = () => {
                 Interest Rate <Tooltip title="Insert text here" />
               </Text>
             </Flex>
-            <Flex justify="flex-start" align="center" pl="0.5rem">
+            <Flex justify="flex-start" align="center" w="100%">
               <Flex
+                w="100%"
                 align="flex-end"
                 transform={{ base: 'scale(0.8)', sm: 'scale(1)' }}
+                px="0.5rem"
               >
                 <Text fontSize="3xl" fontFamily="body" lineHeight="80%">
-                  2
+                  {yieldRate.toFixed(1)}
                 </Text>
                 <Text
                   ml="0.25rem"

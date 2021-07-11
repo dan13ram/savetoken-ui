@@ -11,18 +11,20 @@ import React from 'react';
 type Props = {
   buttonText: string;
   buttonColor: string | undefined;
-  showMax?: boolean;
+  isFixed?: boolean;
   onMax?: () => void;
   onButtonClick?: () => void;
+  isButtonLoading?: boolean;
 } & InputProps;
 
 export const Input: React.FC<Props> = ({
   isDisabled,
   buttonText,
+  onButtonClick,
+  isButtonLoading,
   buttonColor = 'greyGradient',
-  showMax = true,
-  onMax = () => undefined,
-  onButtonClick = () => undefined,
+  isFixed = false,
+  onMax,
   ...props
 }) => {
   const borderColor = isDisabled ? 'grey4' : 'black';
@@ -57,6 +59,9 @@ export const Input: React.FC<Props> = ({
         _invalid={{
           boxShadow: '0 0 0 3px #ef5d5d !important',
         }}
+        isDisabled={isFixed}
+        _disabled={{ border: `3px solid ${borderColor}`, bg: 'grey6' }}
+        fontWeight="bold"
         {...props}
       />
       <InputRightElement h="100%" w="10rem" justify="flex-end">
@@ -66,12 +71,13 @@ export const Input: React.FC<Props> = ({
           mr="1rem"
           color="black"
           onClick={onMax}
-          visibility={showMax ? 'visible' : 'hidden'}
+          visibility={onMax ? 'visible' : 'hidden'}
         >
           MAX
         </ChakraButton>
         <Button
           bg={isDisabled ? 'grey4' : buttonColor}
+          _loading={{ bg: buttonColor, _hover: { bg: buttonColor } }}
           h="100%"
           borderRadius="0.75rem"
           fontFamily="mono"
@@ -81,6 +87,7 @@ export const Input: React.FC<Props> = ({
           borderStyle="solid"
           borderColor={borderColor}
           onClick={onButtonClick}
+          isLoading={isButtonLoading}
           minW="6.5rem"
         >
           {buttonText}

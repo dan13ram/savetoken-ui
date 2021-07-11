@@ -29,6 +29,7 @@ export type SaveToken = {
   insuranceType: InsuranceType;
   insuranceToken: Token;
   insuranceRate: number;
+  rewardToken: Token | null;
   yieldRate: number;
 };
 

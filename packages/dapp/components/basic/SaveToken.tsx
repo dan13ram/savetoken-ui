@@ -6,8 +6,8 @@ export const SaveToken: React.FC<TextProps & { symbol?: string }> = ({
   symbol: inputSymbol,
   ...props
 }) => {
-  const { symbol: saveTokenSymbol } = useSave();
-  const symbol = inputSymbol || saveTokenSymbol;
+  const { tokenSymbol } = useSave();
+  const symbol = inputSymbol || tokenSymbol;
 
   return (
     <Text {...props}>

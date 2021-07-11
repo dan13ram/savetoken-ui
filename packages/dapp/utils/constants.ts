@@ -87,3 +87,12 @@ export const SUBGRAPH_URLS = {
   137: '',
   80001: 'https://api.thegraph.com/subgraphs/name/dan13ram/savetoken-mumbai',
 };
+
+export const COINGECKO_PRICE_API =
+  'https://api.coingecko.com/api/v3/simple/price?ids={tokenId}&vs_currencies=USD';
+
+export const COINGECKO_TOKEN_ID = {
+  DAI: 'dai',
+  USDT: 'tether',
+  USDC: 'usd-coin',
+};

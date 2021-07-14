@@ -74,11 +74,7 @@ export const DepositYieldEstimates: React.FC = () => {
           h={{ base: '4rem', sm: '5rem' }}
           fontWeight="bold"
         >
-          <Flex
-            direction={showYield ? 'column' : 'column-reverse'}
-            justify="center"
-            align="center"
-          >
+          <Flex direction="column" justify="center" align="center">
             <Text
               color={isDisabled || !showYield ? 'grey4' : 'black'}
               onClick={!showYield ? onRateToggle : undefined}
@@ -93,14 +89,10 @@ export const DepositYieldEstimates: React.FC = () => {
               _hover={!showYield ? {} : { color: 'grey2' }}
               onClick={showYield ? onRateToggle : undefined}
             >
-              Est. Insurance Rate <Tooltip title="Insert text here" />
+              Est. Interest Rate <Tooltip title="Insert text here" />
             </Text>
           </Flex>
-          <Flex
-            direction={showAmountInsured ? 'column' : 'column-reverse'}
-            justify="center"
-            align="center"
-          >
+          <Flex direction="column" justify="center" align="center">
             <Text
               color={isDisabled || !showAmountInsured ? 'grey4' : 'black'}
               onClick={!showAmountInsured ? onAmountToggle : undefined}
@@ -165,7 +157,7 @@ export const DepositYieldEstimates: React.FC = () => {
               p="0.25rem"
             >
               <Text fontSize="3xl" fontFamily="body" lineHeight="80%">
-                {insuranceRate.toFixed(1)}
+                {yieldRate.toFixed(1)}
               </Text>
               <Text
                 ml="0.25rem"
